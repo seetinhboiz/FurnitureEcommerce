@@ -2,6 +2,7 @@
 import {
   alpha,
   Box,
+  Button,
   createTheme,
   CssBaseline,
   PaletteMode,
@@ -16,6 +17,7 @@ import ToggleCustomTheme from "../dashboard/internals/components/ToggleCustomThe
 import React, { useState } from "react";
 import getDashboardTheme from "../dashboard/theme/getDashboardTheme";
 import MainUser from "./component/MainUser";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function User() {
   const [mode, setMode] = React.useState<PaletteMode>("light");
@@ -60,9 +62,24 @@ export default function User() {
               }}
             >
               <Header mode={mode} toggleColorMode={toggleColorMode} />
-              <Typography variant="h4" color={mode === 'light' ? 'black' : 'white'}>
+              <Typography
+                variant="h4"
+                color={mode === "light" ? "black" : "white"}
+              >
                 User Management
               </Typography>
+              <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+                <Button
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  tabIndex={-1}
+                  startIcon={<AddIcon />}
+                  color="info"
+                >
+                  New user
+                </Button>
+              </Box>
               <MainUser />
             </Stack>
           </Box>

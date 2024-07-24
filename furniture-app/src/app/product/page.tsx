@@ -2,6 +2,7 @@
 import {
   alpha,
   Box,
+  Button,
   createTheme,
   CssBaseline,
   PaletteMode,
@@ -16,6 +17,7 @@ import SideMenu from "../dashboard/components/SideMenu";
 import ToggleCustomTheme from "../dashboard/internals/components/ToggleCustomTheme";
 import getDashboardTheme from "../dashboard/theme/getDashboardTheme";
 import MainProduct from "./component/MainProduct";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function User() {
   const [mode, setMode] = useState<PaletteMode>("light");
@@ -60,9 +62,24 @@ export default function User() {
               }}
             >
               <Header mode={mode} toggleColorMode={toggleColorMode} />
-              <Typography variant="h4" color={mode === 'light' ? 'black' : 'white'}>
+              <Typography
+                variant="h4"
+                color={mode === "light" ? "black" : "white"}
+              >
                 Product Management
               </Typography>
+              <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+                <Button
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  tabIndex={-1}
+                  startIcon={<AddIcon />}
+                  color="info"
+                >
+                  New product
+                </Button>
+              </Box>
               <MainProduct />
             </Stack>
           </Box>
