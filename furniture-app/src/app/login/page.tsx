@@ -56,7 +56,7 @@ export default function Login() {
   const handleLogin = () => {
     if (username === "admin" && password === "123") {
       router.push("/");
-      alert('success')
+      alert("success");
     }
   };
 
