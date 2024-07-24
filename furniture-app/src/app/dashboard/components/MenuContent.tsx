@@ -2,6 +2,7 @@ import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
+import LogoutIcon from "@mui/icons-material/Logout";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
@@ -12,6 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import { usePathname, useRouter } from "next/navigation";
+import path from "path";
 import * as React from "react";
 
 const mainListItems = [
@@ -22,9 +24,10 @@ const mainListItems = [
 ];
 
 const secondaryListItems = [
-  { text: "Settings", icon: <SettingsRoundedIcon /> },
-  { text: "About", icon: <InfoRoundedIcon /> },
-  { text: "Feedback", icon: <HelpRoundedIcon /> },
+  { text: "Settings", icon: <SettingsRoundedIcon />, path: "/setting" },
+  { text: "About", icon: <InfoRoundedIcon />, path: "/about" },
+  { text: "Feedback", icon: <HelpRoundedIcon />, path: "/feedback" },
+  { text: "Log out", icon: <LogoutIcon />, path: "/login" },
 ];
 
 export default function MenuContent() {
@@ -59,7 +62,7 @@ export default function MenuContent() {
       <List dense>
         {secondaryListItems.map((item, index) => (
           <ListItem key={index} disablePadding sx={{ display: "block" }}>
-            <ListItemButton>
+            <ListItemButton onClick={() => handleListItemClick(item.path)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
