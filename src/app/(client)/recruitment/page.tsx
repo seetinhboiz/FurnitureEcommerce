@@ -1,5 +1,13 @@
+import Footer from "@/components/Footer";
+import RecruitmentComponent from "./Recruitment";
+
 const Recruitment = () => {
-  return <div>Recruitment</div>;
+  return (
+    <>
+      <RecruitmentComponent />
+      <Footer />
+    </>
+  );
 };
 
 export default Recruitment;

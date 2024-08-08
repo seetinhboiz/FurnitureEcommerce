@@ -17,6 +17,8 @@ import {
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ApiPathEnum } from "@/api/api.path.enum";
+import axios from "@/api/axios.instance";
 
 function Copyright(props: any) {
   return (
@@ -44,19 +46,28 @@ export default function Login() {
 
   const router = useRouter();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
 
-  const handleLogin = () => {
-    if (username === "admin" && password === "123") {
-      router.push("/");
-      alert("success");
+    const data = new FormData(event.currentTarget);
+    const username = data.get("username") as string;
+    const password = data.get("password") as string;
+    try {
+      const response = await axios.post(ApiPathEnum.Login, {
+        username,
+        password,
+      });
+
+      if (response.status === 200 || response.status === 201) {
+        const user = response.data;
+        localStorage.setItem("token", user.accessToken);
+        router.push("/");
+      } else {
+        console.error("Đăng nhập thất bại:", response.statusText);
+        alert("failed");
+      }
+    } catch (error) {
+      console.error("Lỗi khi đăng nhập:", error);
     }
   };
 
@@ -135,7 +146,7 @@ export default function Login() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={handleLogin}
+                onClick={() => console.log("test")}
               >
                 Sign In
               </Button>

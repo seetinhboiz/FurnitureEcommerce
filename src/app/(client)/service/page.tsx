@@ -88,6 +88,7 @@ const Service = () => {
                         color={serviceTheme.palette.primary.main}
                         fontWeight={"bold"}
                         textAlign={"center"}
+                        fontFamily={"Inika"}
                       >
                         {title}
                       </Typography>
@@ -95,6 +96,7 @@ const Service = () => {
                         variant="body2"
                         color={serviceTheme.palette.primary.main}
                         textAlign={"justify"}
+                        fontFamily={"Inika"}
                         sx={{
                           display: "-webkit-box",
                           WebkitLineClamp: 12,

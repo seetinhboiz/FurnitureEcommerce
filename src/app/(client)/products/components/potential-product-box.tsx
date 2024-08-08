@@ -77,7 +77,7 @@ const PotentialProductBox = ({ direction }: { direction: string }) => {
             minWidth={300}
             minHeight={300}
             sx={{ backgroundColor: '#fafafa' }}
-          />
+          /> 
         </Grid>
         <Grid item xs={8}>
           <Stack position={'relative'}>
