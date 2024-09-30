@@ -25,7 +25,10 @@ export default function Welcome() {
                         <Image
                             src={'/images/home/welcome/articleTool.png'}
                             alt="tool"
-                            fill
+                            objectFit="contain"
+                            layout="responsive"
+                            height={1}
+                            width={1}
                         />
                     </Box>
                 </Grid>
@@ -62,11 +65,14 @@ export default function Welcome() {
                         </Typography>
                     </Grid>
                     <Grid xs={1.5} item height={1}>
-                        <Box width={1} height={125} position={'relative'}>
+                        <Box width={1} position={'relative'}>
                             <Image
                                 src={'/images/home/welcome/articleLogo.jpg'}
                                 alt="Logo"
-                                fill
+                                objectFit="contain"
+                                layout="responsive"
+                                height={1}
+                                width={1}
                             />
                         </Box>
                     </Grid>

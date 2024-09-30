@@ -86,7 +86,7 @@ const ServiceComponent = () => {
                                         <CardContent>
                                             <Typography
                                                 gutterBottom
-                                                variant="h6"
+                                                variant="h4"
                                                 component="div"
                                                 color={
                                                     serviceTheme.palette.primary
@@ -99,7 +99,7 @@ const ServiceComponent = () => {
                                                 {title}
                                             </Typography>
                                             <Typography
-                                                variant="body2"
+                                                variant="h6"
                                                 color={
                                                     serviceTheme.palette.primary
                                                         .main

@@ -86,7 +86,7 @@ export default function ServiceDetailComponent() {
             chiếu sáng đến hệ thống nguồn điện, chúng tôi đều hỗ trợ bạn.
           </Typography>
           <Grid md={6} xs={12}>
-            <Image src={'/images/service/blog1.jpg'} alt="" layout="responsive" />
+            <Image src={'/images/service/blog1.jpg'} alt="" layout="responsive" width={1} height={1} objectFit="contain"/>
           </Grid>
         </Grid>
 
@@ -259,7 +259,7 @@ export default function ServiceDetailComponent() {
                 item
                 sx={{ paddingBottom: 4, paddingTop: 4 }}
               >
-                <Image src={'/images/service/blog1.jpg'} alt="icon" layout="responsive" />
+                <Image src={'/images/service/blog1.jpg'} alt="icon" layout="responsive" width={1} height={1} objectFit="contain"/>
                 <Typography
                   variant="h6"
                   textAlign={"center"}
@@ -278,7 +278,7 @@ export default function ServiceDetailComponent() {
                 </Typography>
               </Grid>
               <Grid md={3} xs={12} item>
-                <Image src={'/images/service/blog1.jpg'} alt="icon" layout="responsive" />
+                <Image src={'/images/service/blog1.jpg'} alt="icon" layout="responsive" width={1} height={1} objectFit="contain"/>
                 <Typography
                   variant="h6"
                   textAlign={"center"}
@@ -324,7 +324,7 @@ export default function ServiceDetailComponent() {
             thành công.
           </Typography>
           <Grid md={6} xs={12}>
-            <Image src={'/images/service/blog1.jpg'} alt="" layout="responsive" />
+            <Image src={'/images/service/blog1.jpg'} alt="" layout="responsive" width={1} height={1} objectFit="contain"/>
           </Grid>
           <Grid
             xs={12}
