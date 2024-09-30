@@ -42,7 +42,7 @@ export default function Banner() {
                                 color={theme.palette.primary.main}
                                 textAlign={'center'}
                                 sx={{
-                                    fontSize: { xs: '0.55rem', sm: '1.25rem' },
+                                    fontSize: { xs: '1rem', sm: '1.25rem' },
                                 }}
                             >
                                 Khám phá những cơ hội nghề nghiệp thú vị tại
@@ -59,7 +59,7 @@ export default function Banner() {
                                         paddingTop: { xs: 2, sm: 4 },
                                         paddingBottom: { xs: 2, sm: 4 },
                                         fontSize: {
-                                            xs: '0.6rem',
+                                            xs: '1.2rem',
                                             sm: '2.125rem',
                                         },
                                     }}
@@ -72,7 +72,7 @@ export default function Banner() {
                                 color={theme.palette.primary.main}
                                 textAlign={'center'}
                                 sx={{
-                                    fontSize: { xs: '0.55rem', sm: '1.25rem' },
+                                    fontSize: { xs: '1rem', sm: '1.25rem' },
                                 }}
                             >
                                 Hãy tham gia cùng chúng tôi và phát huy hết tiềm

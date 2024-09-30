@@ -1,58 +1,43 @@
 'use client';
 import { ApiPathEnum, convertSlug } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
-import Fancybox from '@/components/FancyBox';
 import Footer from '@/components/Footer';
 import { ICategory } from '@/types/categories/categories.interface';
 import { IProduct } from '@/types/products/products.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import {
     Box,
-    CardMedia,
     Container,
     CssBaseline,
     Grid,
     Stack,
     ThemeProvider,
     Typography,
-    useMediaQuery,
 } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 import { CSSProperties, useEffect, useState } from 'react';
-import Carousel from 'react-material-ui-carousel';
+import { useTranslation } from 'react-i18next';
 import BookIcon from '../../../assets/images/icon/book.png';
 import Blog from '../../activity/component/Blog';
-import GearSvg from './gear-svg';
-import ProductBox from './product-box';
 import theme from '../../theme';
-import { useTranslation } from 'react-i18next';
-import Link from 'next/link';
+import GearSvg from './gear-svg';
 import NewProductComponent from './new-product-box';
+import ProductBox from './product-box';
 
 export default function ProductComponent() {
-    const isDownMdScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const sliderItems = isDownMdScreen ? 1 : 3;
     const { t } = useTranslation();
 
     const styleTitle: CSSProperties = {
-        fontFamily: 'Kanit',
-        fontSize: '30px',
+        // fontFamily: 'Kanit',
+        // fontSize: '30px',
         color: theme.palette.primary.main,
         fontWeight: 'bold',
     };
 
-    const [products, setProducts] = useState<IProduct[]>();
     const [newProducts, setNewProducts] = useState<IProduct[]>();
     const [potentialProducts, setPotentialProducts] = useState<IProduct[]>();
     const [categories, setCategories] = useState<ICategory[]>();
-
-    const getProducts = () => {
-        axios.get<ApiResponse<IProduct[]>>(ApiPathEnum.Product).then((res) => {
-            if (res.status === 200) {
-                setProducts(res.data.data as IProduct[]);
-            }
-        });
-    };
 
     const getNewProduct = () => {
         axios
@@ -87,7 +72,6 @@ export default function ProductComponent() {
     };
 
     useEffect(() => {
-        getProducts();
         getNewProduct();
         getPotentialProduct();
         getCategories();
@@ -128,8 +112,8 @@ export default function ProductComponent() {
                                     />
                                 </svg>
                             </Grid>
-                            <Typography sx={styleTitle}>
-                                {t('product.newProduct')}
+                            <Typography sx={styleTitle} variant="h4">
+                                {t('product.newProduct').toUpperCase()}
                             </Typography>
                         </Grid>
                         <NewProductComponent newProducts={newProducts} />
@@ -162,8 +146,8 @@ export default function ProductComponent() {
                                     />
                                 </svg>
                             </Grid>
-                            <Typography sx={styleTitle}>
-                                {t('product.groupProduct')}
+                            <Typography sx={styleTitle} variant="h4">
+                                {t('product.groupProduct').toUpperCase()}
                             </Typography>
                         </Grid>
                         <Grid item container xs={12} spacing={2}>
@@ -200,8 +184,8 @@ export default function ProductComponent() {
                         >
                             <GearSvg />
                         </Grid>
-                        <Typography sx={styleTitle}>
-                            {t('product.introducePotentialProduct')}
+                        <Typography sx={styleTitle} variant="h4" textAlign={'center'}>
+                            {t('product.introducePotentialProduct').toUpperCase()}
                         </Typography>
                         <Grid item xs={12}>
                             {potentialProducts?.map((product) => (
@@ -251,8 +235,8 @@ export default function ProductComponent() {
                                 mb={3}
                             >
                                 <Image alt="book" src={BookIcon} />
-                                <Typography sx={styleTitle}>
-                                    {t('product.policyForAgency')}
+                                <Typography sx={styleTitle} variant="h4">
+                                    {t('product.policyForAgency').toUpperCase()}
                                 </Typography>
                             </Stack>
                             <Box>
@@ -263,7 +247,7 @@ export default function ProductComponent() {
                                         fontSize: 20,
                                     }}
                                 >
-                                    {t('product.policyDetail')}
+                                    {t('product.policyDetail').toUpperCase()}
                                 </Typography>
                             </Box>
                         </Grid>

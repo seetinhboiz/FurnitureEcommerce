@@ -54,7 +54,7 @@ export default function PolicyComponent() {
                             sx={{
                                 paddingTop: 4,
                                 paddingBottom: 4,
-                                fontSize: { xs: '0.6rem', sm: '2.125rem' },
+                                fontSize: { xs: '1rem', sm: '2.125rem' },
                             }}
                         >
                             CÙNG NHAU NÂNG CAO THÀNH CÔNG
@@ -63,10 +63,10 @@ export default function PolicyComponent() {
                     <Grid xs={8} item>
                         <Typography
                             variant="h6"
-                            textAlign={'center'}
+                            textAlign={'center'} 
                             color={theme.palette.primary.main}
                             sx={{
-                                fontSize: { xs: '0.55rem', sm: '1.25rem' },
+                                fontSize: { xs: '1rem', sm: '1.25rem' },
                                 paddingBottom: 4,
                             }}
                         >

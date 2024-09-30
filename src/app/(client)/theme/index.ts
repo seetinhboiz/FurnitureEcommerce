@@ -53,7 +53,7 @@ const theme = responsiveFontSizes(
                     fontSize: '1.25rem',
                 },
                 '@media (max-width:600px)': {
-                    fontSize: '1rem',
+                    fontSize: '1.25rem',
                 },
             },
             h6: {

@@ -19,14 +19,6 @@ const PotentialProductBox = ({ direction }: { direction: string }) => {
                 my={3}
                 borderColor={theme.palette.primary.main}
                 border={1}
-                // sx={{
-                //   '&:hover': {
-                //     backgroundColor: theme.palette.primary.main,
-                //     color: theme.palette.primary.contrastText,
-                //     borderColor: theme.palette.primary.contrastText,
-                //     overflow: 'auto'
-                //   }
-                // }}
             >
                 <Grid item xs={4} overflow={'hidden'}>
                     <Box
