@@ -18,8 +18,8 @@ import {
 } from '@mui/material';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import ProductBox from '../../products/components/product-box';
 import theme from '../../theme';
+import ProductBox from '../../san-pham/components/product-box';
 
 const AllProductComponent = () => {
     const searchParams = useSearchParams();

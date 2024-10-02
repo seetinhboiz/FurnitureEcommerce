@@ -36,7 +36,7 @@ export default function NewProductComponent({ newProducts }: any) {
                                 .map((item: any) => (
                                     <Grid item xs={12} md={4} key={item._id}>
                                         <Link
-                                            href={`/products/${convertSlug(item.name)}-${item._id}`}
+                                            href={`/san-pham/${convertSlug(item.name)}-${item._id}`}
                                         >
                                             <Card
                                                 key={item._id}
