@@ -92,37 +92,37 @@ const Header = () => {
         {
             name: t('header.home').toUpperCase(),
             icon: <HomeIcon />,
-            path: '/home',
+            path: '/trang-chu',
         },
         {
             name: t('header.product').toUpperCase(),
             icon: <ProductionQuantityLimitsIcon />,
-            path: '/products',
+            path: '/san-pham',
         },
         {
             name: t('header.service').toUpperCase(),
             icon: <MiscellaneousServicesIcon />,
-            path: '/service',
+            path: '/dich-vu',
         },
         {
             name: t('header.recruit').toUpperCase(),
             icon: <WorkIcon />,
-            path: '/recruitment',
+            path: '/tuyen-dung',
         },
         {
             name: t('header.activity').toUpperCase(),
             icon: <LocalActivityIcon />,
-            path: '/activity',
+            path: '/hoat-dong',
         },
         {
             name: t('header.policy').toUpperCase(),
             icon: <PolicyIcon />,
-            path: '/policy',
+            path: '/chinh-sach',
         },
         {
             name: t('header.contact').toUpperCase(),
             icon: <PhoneIcon />,
-            path: '/contact',
+            path: '/lien-he',
         },
     ];
 
@@ -183,11 +183,11 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/home' && isScreenLarge
+                                        pathName === '/trang-chu' && isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
-                                    onClick={() => router.push('/home')}
+                                    onClick={() => router.push('/trang-chu')}
                                     variant="body1"
                                 >
                                     {t('header.home').toUpperCase()}
@@ -196,12 +196,12 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/products' &&
+                                        pathName === '/san-pham' &&
                                         isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
-                                    onClick={() => router.push('/products')}
+                                    onClick={() => router.push('/san-pham')}
                                     variant="body1"
                                 >
                                     {t('header.product').toUpperCase()}
@@ -210,11 +210,11 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/service' && isScreenLarge
+                                        pathName === '/dich-vu' && isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
-                                    onClick={() => router.push('/service')}
+                                    onClick={() => router.push('/dich-vu')}
                                     variant="body1"
                                 >
                                     {t('header.service').toUpperCase()}
@@ -223,12 +223,12 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/recruitment' &&
+                                        pathName === '/tuyen-dung' &&
                                         isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
-                                    onClick={() => router.push('/recruitment')}
+                                    onClick={() => router.push('/tuyen-dung')}
                                     variant="body1"
                                 >
                                     {t('header.recruit').toUpperCase()}
@@ -237,12 +237,12 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/activity' &&
+                                        pathName === '/hoat-dong' &&
                                         isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
-                                    onClick={() => router.push('/activity')}
+                                    onClick={() => router.push('/hoat-dong')}
                                     variant="body1"
                                 >
                                     {t('header.activity').toUpperCase()}
@@ -251,11 +251,11 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/policy' && isScreenLarge
+                                        pathName === '/chinh-sach' && isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
-                                    onClick={() => router.push('/policy')}
+                                    onClick={() => router.push('/chinh-sach')}
                                     variant="body1"
                                 >
                                     {t('header.policy').toUpperCase()}
@@ -264,11 +264,11 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/contact' && isScreenLarge
+                                        pathName === '/lien-he' && isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
-                                    onClick={() => router.push('/contact')}
+                                    onClick={() => router.push('/lien-he')}
                                     variant="body1"
                                 >
                                     {t('header.contact').toUpperCase()}

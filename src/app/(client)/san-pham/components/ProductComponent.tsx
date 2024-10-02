@@ -19,11 +19,11 @@ import Link from 'next/link';
 import { CSSProperties, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BookIcon from '../../../assets/images/icon/book.png';
-import Blog from '../../activity/component/Blog';
 import theme from '../../theme';
 import GearSvg from './gear-svg';
 import NewProductComponent from './new-product-box';
 import ProductBox from './product-box';
+import Blog from '../../hoat-dong/component/Blog';
 
 export default function ProductComponent() {
     const { t } = useTranslation();
@@ -190,7 +190,7 @@ export default function ProductComponent() {
                         <Grid item xs={12}>
                             {potentialProducts?.map((product) => (
                                 <Link
-                                    href={`/products/${convertSlug(product.name)}-${product._id}`}
+                                    href={`/san-pham/${convertSlug(product.name)}-${product._id}`}
                                     key={product._id}
                                 >
                                     <Blog

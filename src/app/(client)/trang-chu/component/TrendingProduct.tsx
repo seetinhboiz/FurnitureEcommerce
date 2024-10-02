@@ -15,8 +15,8 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import shape from '../../../assets/images/shape/waveImg.png';
-import NewProductComponent from '../../products/components/new-product-box';
 import theme from '../../theme';
+import NewProductComponent from '../../san-pham/components/new-product-box';
 
 export default function TrendingProduct() {
     const { t } = useTranslation();
