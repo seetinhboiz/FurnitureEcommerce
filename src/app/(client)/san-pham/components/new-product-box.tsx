@@ -1,6 +1,7 @@
 import { convertSlug } from '@/api/api.path.enum';
 import Fancybox from '@/components/FancyBox';
 import {
+    Box,
     Card,
     CardContent,
     CardMedia,
@@ -93,11 +94,7 @@ export default function NewProductComponent({ newProducts }: any) {
                     justifyContent: 'center',
                 }}
             >
-                <div
-                    style={{
-                        width: '100%',
-                    }}
-                >
+                <Box width={1} py={2}>
                     <Fancybox
                         options={{
                             Carousel: {
@@ -107,7 +104,7 @@ export default function NewProductComponent({ newProducts }: any) {
                     >
                         <Carousel>{showProductsCarousel()}</Carousel>
                     </Fancybox>
-                </div>
+                </Box>
             </Grid>
         </Grid>
     );

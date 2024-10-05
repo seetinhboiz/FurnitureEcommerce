@@ -34,7 +34,6 @@ export default function Article() {
                         <i>{t('home.changeTheWayYouExperience')}</i>
                     </Typography>
                     <Typography
-                        variant="subtitle1"
                         color={theme.palette.primary.main}
                         sx={{
                             fontWeight: 'lighter',

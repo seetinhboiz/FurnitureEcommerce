@@ -2,6 +2,7 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { LoadingButton } from '@mui/lab';
 import {
     Avatar,
     Box,
@@ -33,7 +34,7 @@ function Copyright(props: any) {
         >
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                Epioneer
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -46,6 +47,7 @@ const defaultTheme = createTheme();
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     // Validate inputs
     const isUsernameValid = username.trim() !== '';
@@ -67,6 +69,8 @@ export default function Login() {
         const username = data.get('username') as string;
         const password = data.get('password') as string;
         try {
+            setLoading(true);
+
             const response = await axios.post(ApiPathEnum.Login, {
                 username,
                 password,
@@ -84,6 +88,8 @@ export default function Login() {
             }
         } catch (error) {
             toast.error('Login failed');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -129,7 +135,7 @@ export default function Login() {
                             <LockOpenIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Đăng nhập
                         </Typography>
                         <Box
                             component="form"
@@ -142,7 +148,7 @@ export default function Login() {
                                 required
                                 fullWidth
                                 id="username"
-                                label="Username"
+                                label="Tên đăng nhập"
                                 name="username"
                                 autoComplete="username"
                                 autoFocus
@@ -152,10 +158,7 @@ export default function Login() {
                                 }
                             />
                             {usernameError && (
-                                <FormHelperText
-                                    id="username-error-text"
-                                    error
-                                >
+                                <FormHelperText id="username-error-text" error>
                                     Username is required.
                                 </FormHelperText>
                             )}
@@ -164,7 +167,7 @@ export default function Login() {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Password"
+                                label="Mật khẩu"
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
@@ -174,43 +177,20 @@ export default function Login() {
                                 }
                             />
                             {passwordError && (
-                                <FormHelperText
-                                    id="password-error-text"
-                                    error
-                                >
+                                <FormHelperText id="password-error-text" error>
                                     Password is required.
                                 </FormHelperText>
                             )}
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        value="remember"
-                                        color="primary"
-                                    />
-                                }
-                                label="Remember me"
-                            />
-                            <Button
+                            <LoadingButton
                                 type="submit"
                                 fullWidth
                                 variant="contained"
+                                loading={loading}
                                 sx={{ mt: 3, mb: 2 }}
                             >
-                                Sign In
-                            </Button>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link href="/register" variant="body2">
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                            <Copyright sx={{ mt: 5 }} />
+                                Đăng nhập
+                            </LoadingButton>
+                            <Copyright sx={{ mt: 2 }} />
                         </Box>
                     </Box>
                 </Grid>

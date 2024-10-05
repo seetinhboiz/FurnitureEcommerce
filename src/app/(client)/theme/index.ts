@@ -66,7 +66,7 @@ const theme = responsiveFontSizes(
                 },
             },
             body1: {
-                fontSize: '1rem',
+                fontSize: '1.2rem',
                 '@media (max-width:1200px)': {
                     fontSize: '0.875rem',
                 },
@@ -81,6 +81,24 @@ const theme = responsiveFontSizes(
                 },
                 '@media (max-width:600px)': {
                     fontSize: '0.625rem',
+                },
+            },
+            subtitle1: {
+                fontSize: '1.2rem',
+                '@media (max-width:1200px)': {
+                    fontSize: '0.875rem',
+                },
+                '@media (max-width:600px)': {
+                    fontSize: '0.75rem',
+                },
+            },
+            subtitle2: {
+                fontSize: '1.2rem',
+                '@media (max-width:1200px)': {
+                    fontSize: '0.875rem',
+                },
+                '@media (max-width:600px)': {
+                    fontSize: '0.75rem',
                 },
             },
         },
