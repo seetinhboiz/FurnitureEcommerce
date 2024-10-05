@@ -71,7 +71,9 @@ export default function Blog({ directionImg, data, type }: any) {
                                     color={blogTheme.palette.primary.main}
                                     textAlign={'center'}
                                 >
-                                    {type==='PRODUCT' ? data.name.toUpperCase() : data.title.toUpperCase()}
+                                    {type === 'PRODUCT'
+                                        ? t(`${data.name}`).toUpperCase()
+                                        : t(`${data.title}`).toUpperCase()}
                                 </Typography>
                                 <Divider />
                                 <Typography
@@ -84,7 +86,9 @@ export default function Blog({ directionImg, data, type }: any) {
                                         marginBottom: 2,
                                     }}
                                 >
-                                    {type==='PRODUCT' ? data.description : data.subtitle}
+                                    {type === 'PRODUCT'
+                                        ? t(`${data.description}`)
+                                        : t(`${data.subtitle}`)}
                                 </Typography>
                             </Grid>
                         </Grid>

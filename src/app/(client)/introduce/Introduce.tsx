@@ -11,6 +11,7 @@ import toolImg from '../../assets/images/introduce/tool.png';
 import lineTopLeft from '../../assets/images/introduce/topleft.png';
 import lineTopRight from '../../assets/images/introduce/topright.png';
 import { useTranslation } from 'react-i18next';
+import theme from '../theme';
 
 function Item({ isSmallScreen }: any) {
     const { t } = useTranslation();
@@ -242,6 +243,7 @@ export default function Introduce() {
                         fontWeight={'bold'}
                         sx={{ marginTop: 6, marginBottom: 6 }}
                         textAlign={'center'}
+                        color={theme.palette.primary.contrastText}
                     >
                         EPIONEER
                     </Typography>
@@ -255,6 +257,7 @@ export default function Introduce() {
                             bottom: isSmallScreen ? 10 : 30,
                             left: 0,
                         }}
+                        color={theme.palette.primary.contrastText}
                     >
                         Epioneer Company Ltd.
                     </Typography>

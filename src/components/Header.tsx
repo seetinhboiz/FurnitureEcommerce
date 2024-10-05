@@ -12,6 +12,7 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 import WorkIcon from '@mui/icons-material/Work';
 import {
     AppBar,
+    Box,
     Divider,
     Drawer,
     Grid,
@@ -29,7 +30,6 @@ import { styled, ThemeProvider } from '@mui/material/styles';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import logo from '../app/assets/images/logoHeader.jpg';
 import LanguageButton from './LanguageButton';
 import { useTranslation } from 'react-i18next';
 
@@ -164,13 +164,21 @@ const Header = () => {
                             justifyContent={'center'}
                             alignItems={'center'}
                         >
-                            <Image
-                                src={logo}
-                                alt="logo"
+                            <Box
                                 width={100}
                                 height={100}
-                                style={{ borderRadius: 6 }}
-                            />
+                                position={'relative'}
+                                onClick={() => {
+                                    router.push('/');
+                                }}
+                            >
+                                <Image
+                                    src={'/images/logoHeader.jpg'}
+                                    alt="logo"
+                                    fill
+                                    style={{ borderRadius: 6 }}
+                                />
+                            </Box>
                         </Grid>
                         <Grid
                             item
