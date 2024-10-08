@@ -25,7 +25,7 @@ export default function Service() {
                         alignContent={'center'}
                         justifyContent={'center'}
                         xs={6}
-                        p={5}
+                        sx={{ p: { xs: 1, md: 2, lg: 5 } }}
                     >
                         <Grid
                             sx={{
@@ -47,7 +47,7 @@ export default function Service() {
                                 className="hexagonWhiteContainer"
                                 width={1}
                                 height={1}
-                                p={5}
+                                sx={{ p: { xs: 1, md: 2, lg: 5 } }}
                             >
                                 <Box position={'relative'} height={1} width={1}>
                                     <Image
@@ -204,7 +204,7 @@ export default function Service() {
                         alignContent={'center'}
                         justifyContent={'center'}
                         xs={6}
-                        p={5}
+                        sx={{ p: { xs: 1, md: 2, lg: 5 } }}
                     >
                         <Grid
                             sx={{
@@ -226,7 +226,7 @@ export default function Service() {
                                 className="hexagonWhiteContainer"
                                 width={1}
                                 height={1}
-                                p={5}
+                                sx={{ p: { xs: 1, md: 2, lg: 5 } }}
                             >
                                 <Box position={'relative'} height={1} width={1}>
                                     <Image
