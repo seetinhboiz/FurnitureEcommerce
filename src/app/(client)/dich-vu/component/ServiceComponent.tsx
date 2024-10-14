@@ -16,10 +16,12 @@ import settingImg from '../../../assets/images/introduce/setting.png';
 import toolImg from '../../../assets/images/introduce/tool.png';
 import theme from '../../theme';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
 
 const ServiceComponent = () => {
     const serviceTheme = theme;
     const { t } = useTranslation();
+
     const serviceData = [
         {
             title: t('service.rental').toUpperCase(),
@@ -58,75 +60,77 @@ const ServiceComponent = () => {
                             sx={{ mt: 1, mb: 1 }}
                         >
                             <Grid xs={12}>
-                                <Paper elevation={24}>
-                                    <Card
-                                        sx={{
-                                            minHeight: 500,
-                                            maxHeight: 500,
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                        }}
-                                    >
-                                        <CardMedia
+                                <Link href={`/dich-vu/chi-tiet`}>
+                                    <Paper elevation={24}>
+                                        <Card
                                             sx={{
-                                                height: 140,
-                                                backgroundColor:
-                                                    serviceTheme.palette.primary
-                                                        .main,
+                                                minHeight: 500,
+                                                maxHeight: 500,
+                                                display: 'flex',
+                                                flexDirection: 'column',
                                             }}
-                                            image={img.src}
-                                            title="lightImg"
-                                            component="img"
-                                            style={{
-                                                objectFit: 'contain',
-                                                paddingBottom: 20,
-                                                paddingTop: 20,
-                                            }}
-                                        />
-                                        <CardContent>
-                                            <Typography
-                                                gutterBottom
-                                                variant="h4"
-                                                component="div"
-                                                color={
-                                                    serviceTheme.palette.primary
-                                                        .main
-                                                }
-                                                fontWeight={'bold'}
-                                                textAlign={'center'}
-                                                fontFamily={'Inika'}
-                                            >
-                                                {title}
-                                            </Typography>
-                                            <Typography
-                                                variant="h6"
-                                                color={
-                                                    serviceTheme.palette.primary
-                                                        .main
-                                                }
-                                                textAlign={'justify'}
-                                                fontFamily={'Inika'}
-                                                sx={{
-                                                    display: '-webkit-box',
-                                                    WebkitLineClamp: 12,
-                                                    WebkitBoxOrient: 'vertical',
-                                                    overflow: 'hidden',
-                                                    textOverflow: 'ellipsis',
-                                                }}
-                                            >
-                                                {description}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions
-                                            disableSpacing
-                                            sx={{ mt: 'auto' }}
                                         >
-                                            <Button size="small">
-                                                {t('service.detail')}
-                                            </Button>
-                                        </CardActions>
-                                    </Card>
-                                </Paper>
+                                            <CardMedia
+                                                sx={{
+                                                    height: 140,
+                                                    backgroundColor:
+                                                        serviceTheme.palette
+                                                            .primary.main,
+                                                }}
+                                                image={img.src}
+                                                title="lightImg"
+                                                component="img"
+                                                style={{
+                                                    objectFit: 'contain',
+                                                    paddingBottom: 20,
+                                                    paddingTop: 20,
+                                                }}
+                                            />
+                                            <CardContent>
+                                                <Typography
+                                                    gutterBottom
+                                                    variant="h4"
+                                                    component="div"
+                                                    color={
+                                                        serviceTheme.palette
+                                                            .primary.main
+                                                    }
+                                                    fontWeight={'bold'}
+                                                    textAlign={'center'}
+                                                >
+                                                    {title}
+                                                </Typography>
+                                                <Typography
+                                                    variant="h6"
+                                                    color={
+                                                        serviceTheme.palette
+                                                            .primary.main
+                                                    }
+                                                    textAlign={'justify'}
+                                                    sx={{
+                                                        display: '-webkit-box',
+                                                        WebkitLineClamp: 12,
+                                                        WebkitBoxOrient:
+                                                            'vertical',
+                                                        overflow: 'hidden',
+                                                        textOverflow:
+                                                            'ellipsis',
+                                                    }}
+                                                >
+                                                    {description}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions
+                                                disableSpacing
+                                                sx={{ mt: 'auto' }}
+                                            >
+                                                <Button size="small">
+                                                    {t('service.detail')}
+                                                </Button>
+                                            </CardActions>
+                                        </Card>
+                                    </Paper>
+                                </Link>
                             </Grid>
                         </Grid>
                     ))}

@@ -1,22 +1,21 @@
 'use client';
-import { ApiPathEnum, convertSlug } from '@/api/api.path.enum';
+import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
 import { IProduct } from '@/types/products/products.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import {
     Box,
     Grid,
-    Paper,
     ThemeProvider,
     Typography,
-    useMediaQuery,
+    useMediaQuery
 } from '@mui/material';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import shape from '../../../assets/images/shape/waveImg.png';
-import theme from '../../theme';
 import NewProductComponent from '../../san-pham/components/new-product-box';
+import theme from '../../theme';
 
 export default function TrendingProduct() {
     const { t } = useTranslation();

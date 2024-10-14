@@ -9,8 +9,8 @@ import {
     Typography,
 } from '@mui/material';
 import Image from 'next/image';
-import theme from '../../theme';
 import { useTranslation } from 'react-i18next';
+import theme from '../../theme';
 
 export default function Blog({ directionImg, data, type }: any) {
     const blogTheme = theme;
@@ -52,10 +52,12 @@ export default function Blog({ directionImg, data, type }: any) {
                                                 : data.img
                                         }
                                         alt="Image"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        height={1}
+                                        width={1}
+                                        layout="responsive"
                                         style={{
-                                            objectFit: 'cover',
+                                            objectFit: 'contain',
+                                            maxHeight: '300px',
                                         }}
                                     />
                                 </Box>
@@ -80,7 +82,6 @@ export default function Blog({ directionImg, data, type }: any) {
                                     variant="h5"
                                     color={blogTheme.palette.primary.main}
                                     sx={{
-                                        fontFamily: 'HelveticaNeue',
                                         fontWeight: 'lighter',
                                         textAlign: 'justify',
                                         marginBottom: 2,
