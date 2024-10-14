@@ -24,7 +24,7 @@ const ActivityComponent = () => {
                 <Grid xs={10} item>
                     {activities.map((activity) => (
                         <Link
-                            href={`/activity/${convertSlug(activity.title)}-${activity.id}`}
+                            href={`/hoat-dong/${convertSlug(activity.title)}-${activity.id}`}
                             key={activity.id}
                         >
                             <Blog

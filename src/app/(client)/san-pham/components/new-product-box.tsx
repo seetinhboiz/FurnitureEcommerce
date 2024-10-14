@@ -20,7 +20,6 @@ export default function NewProductComponent({ newProducts }: any) {
     const sliderItems = isDownMdScreen ? 1 : 3;
 
     const styleProductTitle: CSSProperties = {
-        fontFamily: 'Inika',
         fontSize: '20px',
         fontWeight: 'bold',
     };

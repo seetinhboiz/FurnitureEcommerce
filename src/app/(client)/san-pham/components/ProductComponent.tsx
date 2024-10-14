@@ -29,8 +29,6 @@ export default function ProductComponent() {
     const { t } = useTranslation();
 
     const styleTitle: CSSProperties = {
-        // fontFamily: 'Kanit',
-        // fontSize: '30px',
         color: theme.palette.primary.main,
         fontWeight: 'bold',
     };

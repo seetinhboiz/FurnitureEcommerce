@@ -101,11 +101,12 @@ export default function ActivityDetailComponent() {
                                         '/images/activity/welcomeEp.png'
                                     }
                                     alt="welcome"
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    width={1}
+                                    height={1}
                                     style={{
-                                        objectFit: 'cover',
+                                        objectFit: 'contain',
                                     }}
+                                    layout='responsive'
                                 />
                             </Box>
                         </Grid>

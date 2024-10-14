@@ -118,6 +118,7 @@ export default function ServiceDetailComponent() {
             container
             item
             justifyContent={"space-between"}
+            alignItems={'flex-start'}
             sx={{ paddingTop: 4, paddingBottom: 4 }}
           >
             <Grid md={4} xs={12} item container>
@@ -128,7 +129,7 @@ export default function ServiceDetailComponent() {
                 container
                 sx={{ mb: 2 }}
               >
-                <Image src={'/images/icon/hand.png'} alt="icon" width={120} />
+                <Image src={'/images/icon/hand.png'} alt="icon" width={100} height={100} />
               </Grid>
               <Grid xs={12} item justifyContent={"center"} container>
                 <Typography
@@ -156,7 +157,6 @@ export default function ServiceDetailComponent() {
               xs={12}
               item
               container
-              sx={{ paddingTop: 4, paddingBottom: 4 }}
             >
               <Grid
                 xs={12}
@@ -165,7 +165,7 @@ export default function ServiceDetailComponent() {
                 container
                 sx={{ mb: 2 }}
               >
-                <Image src={'/images/icon/support.png'} alt="icon" width={120} />
+                <Image src={'/images/icon/support.png'} alt="icon" width={100} height={100}/>
               </Grid>
               <Grid xs={12} item justifyContent={"center"} container>
                 <Typography
@@ -196,7 +196,7 @@ export default function ServiceDetailComponent() {
                 container
                 sx={{ mb: 2 }}
               >
-                <Image src={'/images/icon/express.png'} alt="icon" width={180} />
+                <Image src={'/images/icon/express.png'} alt="icon" width={100} height={100} />
               </Grid>
               <Grid xs={12} item justifyContent={"center"} container>
                 <Typography
@@ -233,9 +233,9 @@ export default function ServiceDetailComponent() {
                 {"Khám phá quy trình cho thuê triển lãm dễ dàng và thuận tiện".toUpperCase()}
               </Typography>
             </Grid>
-            <Grid xs={12} container item justifyContent={"space-evenly"}>
+            <Grid xs={12} container item justifyContent={"space-evenly"} alignItems={'flex-end'}>
               <Grid md={3} xs={12} item>
-                <Image src={'/images/service/blog1.jpg'} alt="icon" layout="responsive" />
+                <Image src={'/images/service/blog1.jpg'} alt="icon" layout="responsive" width={1} height={1} objectFit="contain" />
                 <Typography
                   variant="h6"
                   textAlign={"center"}
@@ -257,7 +257,6 @@ export default function ServiceDetailComponent() {
                 md={3}
                 xs={12}
                 item
-                sx={{ paddingBottom: 4, paddingTop: 4 }}
               >
                 <Image src={'/images/service/blog1.jpg'} alt="icon" layout="responsive" width={1} height={1} objectFit="contain"/>
                 <Typography
@@ -331,9 +330,10 @@ export default function ServiceDetailComponent() {
             item
             container
             justifyContent={"space-evenly"}
+            alignItems={'flex-start'}
             sx={{ paddingTop: 4, paddingBottom: 4 }}
           >
-            <Grid md={4} xs={12} item container sx={{ paddingBottom: 4 }}>
+            <Grid md={4} xs={12} item container >
               <Grid
                 xs={12}
                 item
@@ -341,7 +341,7 @@ export default function ServiceDetailComponent() {
                 container
                 sx={{ mb: 2 }}
               >
-                <Image src={'/images/icon/like.png'} alt="icon" width={120} />
+                <Image src={'/images/icon/like.png'} alt="icon" width={100} height={100} />
               </Grid>
               <Grid xs={12} item justifyContent={"center"} container>
                 <Typography
@@ -372,7 +372,7 @@ export default function ServiceDetailComponent() {
                 container
                 sx={{ mb: 2 }}
               >
-                <Image src={'/images/icon/chat.png'} alt="icon" width={120} />
+                <Image src={'/images/icon/chat.png'} alt="icon"width={100} height={100} />
               </Grid>
               <Grid xs={12} item justifyContent={"center"} container>
                 <Typography

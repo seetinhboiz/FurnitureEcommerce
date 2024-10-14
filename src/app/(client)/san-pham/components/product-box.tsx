@@ -13,7 +13,6 @@ import theme from '../../theme';
 
 const ProductBox = ({ data, type }: { data: any; type: any }) => {
     const styleProductTitle: CSSProperties = {
-        fontFamily: 'Inika',
         fontSize: '20px',
         fontWeight: 'bold',
     };

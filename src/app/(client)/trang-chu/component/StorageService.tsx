@@ -12,28 +12,17 @@ import { useTranslation } from 'react-i18next';
 
 export default function StorageService() {
     const { t } = useTranslation();
-    const storageTheme = theme;
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-    theme.typography.h4 = {
-        fontSize: '1.2rem',
-        '@media (min-width:600px)': {
-            fontSize: '1.5rem',
-        },
-        [theme.breakpoints.up('md')]: {
-            fontSize: '2.4rem',
-        },
-    };
-
     return (
-        <ThemeProvider theme={storageTheme}>
+        <ThemeProvider theme={theme}>
             <Grid
                 xs={12}
                 container
                 justifyContent={'space-evenly'}
                 alignItems={'center'}
                 sx={{
-                    backgroundColor: storageTheme.palette.primary.main,
+                    backgroundColor: theme.palette.primary.main,
                     py: 12,
                 }}
                 height={1}
@@ -64,7 +53,7 @@ export default function StorageService() {
                             src={'/images/home/storage/package.png'}
                             alt={'Package image'}
                             fill
-                            sizes='100vw'
+                            sizes="100vw"
                         />
                     </Box>
                 </Grid>
@@ -78,6 +67,7 @@ export default function StorageService() {
                             textAlign: 'center',
                             fontWeight: 'bold',
                         }}
+                        fontFamily={'Roboto'}
                     >
                         {t('home.storageService').toUpperCase()}
                     </Typography>
@@ -134,7 +124,7 @@ export default function StorageService() {
                             src={'/images/home/storage/warehouse.png'}
                             alt={'Warehouse image'}
                             fill
-                            sizes='100vw'
+                            sizes="100vw"
                         />
                     </Box>
                 </Grid>
