@@ -6,8 +6,8 @@ import RecruitmentComponent from "./component/Recruitment";
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Recruitment',
-    description: 'EPIONEER Recruitment',
+    title: 'Tuyển dụng',
+    description: 'Tuyển dụng ePioneer',
 }
 
 const Recruitment = () => {

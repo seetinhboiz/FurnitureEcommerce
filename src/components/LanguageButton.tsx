@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { Select, MenuItem, FormControl, Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import vnIcon from '../app/assets/images/flag/vn.png';
-import engIcon from '../app/assets/images/flag/eng.png';
-import zhIcon from '../app/assets/images/flag/zh.png';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import '../../next-i18next.config';
@@ -50,10 +47,10 @@ const LanguageButton = () => {
                                 alt="vn"
                                 src={
                                     language === 'en'
-                                        ? engIcon
+                                        ? '/images/flag/eng.png'
                                         : language === 'vn'
-                                          ? vnIcon
-                                          : zhIcon
+                                          ? '/images/flag/vn.png'
+                                          : '/images/flag/zh.png'
                                 }
                                 quality={100}
                                 fill

@@ -13,8 +13,8 @@ import Soulution from "./component/Solution";
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Home',
-    description: ' EPIONEER Home Page',
+    title: 'Trang chủ',
+    description: 'Trang chủ ePioneer',
 }
 
 const Home = () => {
