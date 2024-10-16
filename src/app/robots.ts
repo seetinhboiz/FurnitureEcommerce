@@ -7,7 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/admin',
     },
-    // URL website after deploy
-    // sitemap: 'https://acme.com/sitemap.xml',
+    sitemap: 'https://epioneer.net/sitemap.xml',
   }
 }

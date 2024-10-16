@@ -1,25 +1,68 @@
-import type { MetadataRoute } from "next";
+import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      // URL website after deploy
-      url: "https://acme.com",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
-    },
-    {
-      url: "https://acme.com/about",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://acme.com/blog",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.5,
-    },
-  ];
+    return [
+        {
+            url: 'https://epioneer.net',
+            lastModified: new Date(),
+            changeFrequency: 'yearly',
+            priority: 1,
+        },
+        {
+            url: 'https://epioneer.net/chinh-sach',
+
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.5,
+        },
+        {
+            url: 'https://epioneer.net/dich-vu',
+
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.5,
+        },
+        {
+            url: 'https://epioneer.net/hoat-dong',
+
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.5,
+        },
+        {
+            url: 'https://epioneer.net/lien-he',
+
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://epioneer.net/san-pham',
+
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+
+        {
+            url: 'https://acme.net/tat-ca-san-pham',
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://epioneer.net/trang-chu',
+
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 1,
+        },
+        {
+            url: 'https://epioneer.net/tuyen-dung',
+
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.5,
+        },
+    ];
 }

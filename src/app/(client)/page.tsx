@@ -2,7 +2,7 @@ import Introduce from "./introduce/Introduce";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Introduce",
+  title: "ePioneer",
   description: "YOUR FURNITURE, OUR STORY",
 };
 

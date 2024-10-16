@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import AllProductComponent from './component/AllProductComponent';
 
 export const metadata: Metadata = {
-    title: 'All Product',
-    description: ' EPIONEER All Product',
+    title: 'Tất cả sản phẩm',
+    description: 'Tất cả sản phẩm ePioneer',
 };
 
 const AllProduct = () => {
