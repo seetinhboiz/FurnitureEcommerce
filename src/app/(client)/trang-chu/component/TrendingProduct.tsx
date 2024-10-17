@@ -56,9 +56,8 @@ export default function TrendingProduct() {
                     <Typography
                         variant="h5"
                         sx={{
-                            textShadow: '0 0 2px black',
                             textAlign: 'center',
-                            fontWeight: 'bold',
+                            fontWeight: '700',
                             padding: isMobile ? 2 : 4,
                         }}
                     >

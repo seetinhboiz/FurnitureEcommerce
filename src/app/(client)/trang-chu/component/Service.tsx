@@ -81,7 +81,13 @@ export default function Service() {
                             sx={{ mt: { xs: 0, md: 4 } }}
                             justifyContent={'left'}
                         >
-                            <DoneIcon color="primary" fontSize="medium" />
+                            <Box width={40} height={40} position={'relative'}>
+                                <Image
+                                    alt="tick"
+                                    src="/images/home/service/tick.svg"
+                                    fill
+                                />
+                            </Box>
                             <Typography
                                 variant="h6"
                                 color={theme.palette.primary.main}
@@ -99,7 +105,13 @@ export default function Service() {
                             sx={{ mt: { xs: 0, md: 4 } }}
                             justifyContent={'left'}
                         >
-                            <DoneIcon color="primary" />
+                            <Box width={40} height={40} position={'relative'}>
+                                <Image
+                                    alt="tick"
+                                    src="/images/home/service/tick.svg"
+                                    fill
+                                />
+                            </Box>
                             <Typography
                                 variant="h6"
                                 color={theme.palette.primary.main}
@@ -117,7 +129,13 @@ export default function Service() {
                             justifyContent={'left'}
                             sx={{ mt: { xs: 0, md: 4 } }}
                         >
-                            <DoneIcon color="primary" />
+                            <Box width={40} height={40} position={'relative'}>
+                                <Image
+                                    alt="tick"
+                                    src="/images/home/service/tick.svg"
+                                    fill
+                                />
+                            </Box>
                             <Typography
                                 variant="h6"
                                 color={theme.palette.primary.main}

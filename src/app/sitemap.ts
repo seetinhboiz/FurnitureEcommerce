@@ -45,7 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
 
         {
-            url: 'https://acme.net/tat-ca-san-pham',
+            url: 'https://epioneer.net/tat-ca-san-pham',
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 0.8,

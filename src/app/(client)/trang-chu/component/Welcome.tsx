@@ -57,9 +57,9 @@ export default function Welcome() {
                     </Grid>
                     <Grid xs={12} item>
                         <Typography
-                            variant="h6"
                             color={theme.palette.primary.main}
                             textAlign={'center'}
+                            fontWeight={700}
                         >
                             {t('home.weProvideCreativeSolution')}
                         </Typography>

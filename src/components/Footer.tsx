@@ -32,18 +32,25 @@ export default function Footer() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Box
-                                    sx={{
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2 ease',
-                                        '&:hover': {
-                                            transform: 'scale(1.2)',
-                                            opacity: 0.8,
-                                        },
-                                    }}
+                                <Link
+                                    href={
+                                        'https://www.facebook.com/profile.php?id=61563992245614'
+                                    }
+                                    target="_blank"
                                 >
-                                    <FacebookIcon />
-                                </Box>
+                                    <Box
+                                        sx={{
+                                            cursor: 'pointer',
+                                            transition: 'all 0.2 ease',
+                                            '&:hover': {
+                                                transform: 'scale(1.2)',
+                                                opacity: 0.8,
+                                            },
+                                        }}
+                                    >
+                                        <FacebookIcon />
+                                    </Box>
+                                </Link>
                                 <Box
                                     sx={{
                                         cursor: 'pointer',
@@ -80,18 +87,25 @@ export default function Footer() {
                                 >
                                     <XIcon />
                                 </Box>
-                                <Box
-                                    sx={{
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2 ease',
-                                        '&:hover': {
-                                            transform: 'scale(1.2)',
-                                            opacity: 0.8,
-                                        },
-                                    }}
+                                <Link
+                                    href={
+                                        'https://www.youtube.com/@Hangtotgiatotnhat'
+                                    }
+                                    target="_blank"
                                 >
-                                    <YouTubeIcon />
-                                </Box>
+                                    <Box
+                                        sx={{
+                                            cursor: 'pointer',
+                                            transition: 'all 0.2 ease',
+                                            '&:hover': {
+                                                transform: 'scale(1.2)',
+                                                opacity: 0.8,
+                                            },
+                                        }}
+                                    >
+                                        <YouTubeIcon />
+                                    </Box>
+                                </Link>
                             </Stack>
                         </Divider>
                         <Grid
@@ -105,7 +119,12 @@ export default function Footer() {
                                 height={'5rem'}
                                 width={'14rem'}
                             >
-                                <Image src={logo} alt="logo" fill sizes='100%' />
+                                <Image
+                                    src={logo}
+                                    alt="logo"
+                                    fill
+                                    sizes="100%"
+                                />
                             </Box>
                         </Grid>
                         <Grid
@@ -128,12 +147,33 @@ export default function Footer() {
                                     >
                                         THÔNG TIN LIÊN HỆ
                                     </Typography>
-                                    <Typography variant="body2">
-                                        <Box component="span" fontWeight="bold">
+                                    <Stack direction={'row'} spacing={1}>
+                                        <Typography
+                                            component="span"
+                                            fontWeight="bold"
+                                            whiteSpace={'nowrap'}
+                                            variant="body2"
+                                        >
                                             Địa chỉ:
-                                        </Box>{' '}
-                                        Địa chỉ cụ thể của công ty bạn
-                                    </Typography>
+                                        </Typography>
+                                        <Stack>
+                                            <Typography
+                                                component="span"
+                                                variant="body2"
+                                            >
+                                                <b>Cơ sở 1:</b> 36 Đường số 2,
+                                                KDC Cityland Park Hill Phường
+                                                10, Gò Vấp, TPHCM
+                                            </Typography>
+                                            <Typography
+                                                component="span"
+                                                variant="body2"
+                                            >
+                                                <b>Cơ sở 2:</b> 799 Đ. Nguyễn
+                                                Văn Linh, Tân Phú, Quận 7, TPHCM
+                                            </Typography>
+                                        </Stack>
+                                    </Stack>
                                     <Typography variant="body2">
                                         <Box component="span" fontWeight="bold">
                                             Thời gian làm việc:
@@ -144,16 +184,16 @@ export default function Footer() {
                                         <Box component="span" fontWeight="bold">
                                             Hotline:
                                         </Box>{' '}
-                                        <Link href="tel:0123456789">
-                                            0123 456 789
+                                        <Link href="tel:+84903170150">
+                                            +84903170150
                                         </Link>
                                     </Typography>
                                     <Typography variant="body2">
                                         <Box component="span" fontWeight="bold">
                                             Email:
                                         </Box>{' '}
-                                        <Link href="mailto:contact@example.com">
-                                            contact@example.com
+                                        <Link href="mailto:epioneervn@gmail.com">
+                                            epioneervn@gmail.com
                                         </Link>
                                     </Typography>
                                 </Grid>
