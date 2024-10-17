@@ -156,18 +156,12 @@ const Header = () => {
                         flexWrap={'nowrap'}
                         xs={12}
                     >
-                        <Grid
-                            item
-                            xs={6}
-                            md={1}
-                            container
-                            justifyContent={'center'}
-                            alignItems={'center'}
-                        >
+                        <Grid item xs={6} md={1} height={140}>
                             <Box
-                                width={100}
-                                height={100}
+                                width={140}
+                                height={1}
                                 position={'relative'}
+                                sx={{ cursor: 'pointer' }}
                                 onClick={() => {
                                     router.push('/');
                                 }}
@@ -176,7 +170,6 @@ const Header = () => {
                                     src={'/images/logoHeader.jpg'}
                                     alt="logo"
                                     fill
-                                    style={{ borderRadius: 6 }}
                                 />
                             </Box>
                         </Grid>
@@ -191,7 +184,8 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/trang-chu' && isScreenLarge
+                                        pathName === '/trang-chu' &&
+                                        isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
@@ -259,7 +253,8 @@ const Header = () => {
                             <Grid item>
                                 <MenuItem
                                     className={
-                                        pathName === '/chinh-sach' && isScreenLarge
+                                        pathName === '/chinh-sach' &&
+                                        isScreenLarge
                                             ? 'selected'
                                             : ''
                                     }
