@@ -11,9 +11,9 @@ import {
     ThemeProvider,
     Typography,
 } from '@mui/material';
-import lightImg from '../../../assets/images/introduce/light.png';
-import settingImg from '../../../assets/images/introduce/setting.png';
-import toolImg from '../../../assets/images/introduce/tool.png';
+// import lightImg from '../../../assets/images/introduce/light.png';
+// import settingImg from '../../../assets/images/introduce/setting.png';
+// import toolImg from '../../../assets/images/introduce/tool.png';
 import theme from '../../theme';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
@@ -25,17 +25,20 @@ const ServiceComponent = () => {
     const serviceData = [
         {
             title: t('service.rental').toUpperCase(),
-            img: settingImg,
+            // img: settingImg,
+            img: '',
             description: t('service.rentalDescription'),
         },
         {
             title: t('service.install').toUpperCase(),
-            img: toolImg,
+            // img: toolImg,
+            img: '',
             description: t('service.installDescription'),
         },
         {
             title: t('service.afterShow').toUpperCase(),
-            img: lightImg,
+            // img: lightImg,
+            img: '',
             description: t('service.afterShowDescription'),
         },
     ];
@@ -77,7 +80,8 @@ const ServiceComponent = () => {
                                                         serviceTheme.palette
                                                             .primary.main,
                                                 }}
-                                                image={img.src}
+                                                // image={img.src}
+                                                image={img}
                                                 title="lightImg"
                                                 component="img"
                                                 style={{

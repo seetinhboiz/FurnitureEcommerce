@@ -1,7 +1,7 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
 import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
-import { IBanner, IImage, IProduct } from '@/types/products/products.interface';
+import { IBanner, IImage } from '@/types/products/products.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -21,7 +21,7 @@ import {
     ListItemText,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 interface DialogProps {
     open: boolean;

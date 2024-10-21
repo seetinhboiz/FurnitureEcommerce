@@ -24,6 +24,8 @@ import GearSvg from './gear-svg';
 import NewProductComponent from './new-product-box';
 import ProductBox from './product-box';
 import Blog from '../../hoat-dong/component/Blog';
+import ProductBanner from './Banner';
+import NewIcon from './new-icon';
 
 export default function ProductComponent() {
     const { t } = useTranslation();
@@ -79,8 +81,27 @@ export default function ProductComponent() {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Box sx={{ backgroundColor: '#fff', width: 1 }}>
+                <Grid xs={12}>
+                    <ProductBanner />
+                </Grid>
                 <Container sx={{ backgroundColor: '#fff', width: 1 }}>
                     <Grid container xs={12}>
+                        <Grid
+                            xs={12}
+                            display={'flex'}
+                            justifyContent={'center'}
+                            alignItems={'center'}
+                            sx={{ marginBottom: '20px' }}
+                        >
+                            <Typography
+                                variant="h4"
+                                color={theme.palette.primary.main}
+                                fontWeight={'bold'}
+                                textAlign="justify"
+                            >
+                                {t('product.productIntroduce')}
+                            </Typography>
+                        </Grid>
                         <Grid
                             item
                             container
@@ -105,7 +126,7 @@ export default function ProductComponent() {
                                 >
                                     <path
                                         d="M2 4.79166L32.8476 57.6907L108.347 57.4427L138.173 4.3445L212.173 4.10148L238.346 57.0158L312.346 56.7728L328.25 3.72027L408.461 2.45665L438.345 56.359L517.671 56.0985L547.494 2"
-                                        stroke="#401D59"
+                                        stroke="#FBBB20"
                                         strokeWidth="4"
                                     />
                                 </svg>
@@ -114,39 +135,54 @@ export default function ProductComponent() {
                                 {t('product.newProduct').toUpperCase()}
                             </Typography>
                         </Grid>
-                        <NewProductComponent newProducts={newProducts} />
+                        <Grid xs={12} container sx={{ position: 'relative' }}>
+                            <NewProductComponent newProducts={newProducts} />
+                            <NewIcon />
+                        </Grid>
                         <Grid
                             item
                             container
                             justifyContent={'center'}
                             xs={12}
                             alignItems={'center'}
-                            my={3}
+                            mt={10}
+                            mb={3}
                         >
-                            <Grid
-                                item
-                                xs={12}
-                                mb={2}
-                                justifyContent={'center'}
-                                container
+                            <svg
+                                width="115"
+                                height="15"
+                                viewBox="0 0 115 15"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
                             >
-                                <svg
-                                    width="550"
-                                    height="60"
-                                    viewBox="0 0 550 60"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M2 4.79166L32.8476 57.6907L108.347 57.4427L138.173 4.3445L212.173 4.10148L238.346 57.0158L312.346 56.7728L328.25 3.72027L408.461 2.45665L438.345 56.359L517.671 56.0985L547.494 2"
-                                        stroke="#401D59"
-                                        strokeWidth="4"
-                                    />
-                                </svg>
-                            </Grid>
-                            <Typography sx={styleTitle} variant="h4">
+                                <path
+                                    d="M113 2.55141L106.723 13L91.3599 12.951L85.2908 2.46308L70.233 2.41508L64.9069 12.8667L49.8491 12.8187L46.613 2.33979L30.2911 2.0902L24.2101 12.737L8.06845 12.6855L2 2"
+                                    stroke="#FBBB20"
+                                    strokeWidth="4"
+                                />
+                            </svg>
+                            <Typography
+                                sx={{
+                                    ...styleTitle,
+                                    mx: 2,
+                                }}
+                                variant="h4"
+                            >
                                 {t('product.groupProduct').toUpperCase()}
                             </Typography>
+                            <svg
+                                width="115"
+                                height="15"
+                                viewBox="0 0 115 15"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M113 2.55141L106.723 13L91.3599 12.951L85.2908 2.46308L70.233 2.41508L64.9069 12.8667L49.8491 12.8187L46.613 2.33979L30.2911 2.0902L24.2101 12.737L8.06845 12.6855L2 2"
+                                    stroke="#FBBB20"
+                                    strokeWidth="4"
+                                />
+                            </svg>
                         </Grid>
                         <Grid item container xs={12} spacing={2}>
                             {categories?.map((category) => (
@@ -182,8 +218,14 @@ export default function ProductComponent() {
                         >
                             <GearSvg />
                         </Grid>
-                        <Typography sx={styleTitle} variant="h4" textAlign={'center'}>
-                            {t('product.introducePotentialProduct').toUpperCase()}
+                        <Typography
+                            sx={styleTitle}
+                            variant="h4"
+                            textAlign={'center'}
+                        >
+                            {t(
+                                'product.introducePotentialProduct',
+                            ).toUpperCase()}
                         </Typography>
                         <Grid item xs={12}>
                             {potentialProducts?.map((product) => (
@@ -199,55 +241,6 @@ export default function ProductComponent() {
                                     />
                                 </Link>
                             ))}
-                        </Grid>
-                    </Grid>
-                    <Grid
-                        item
-                        container
-                        justifyContent={'center'}
-                        xs={12}
-                        alignItems={'center'}
-                        my={3}
-                    >
-                        <Grid
-                            item
-                            container
-                            justifyContent={'center'}
-                            xs={12}
-                            alignItems={'center'}
-                            my={3}
-                        >
-                            <Grid
-                                item
-                                xs={12}
-                                mb={2}
-                                justifyContent={'center'}
-                                container
-                            >
-                                <GearSvg />
-                            </Grid>
-                            <Stack
-                                direction={'row'}
-                                spacing={2}
-                                alignItems={'center'}
-                                mb={3}
-                            >
-                                <Image alt="book" src={BookIcon} />
-                                <Typography sx={styleTitle} variant="h4">
-                                    {t('product.policyForAgency').toUpperCase()}
-                                </Typography>
-                            </Stack>
-                            <Box>
-                                <Typography
-                                    sx={{
-                                        ...styleTitle,
-                                        fontWeight: 'none',
-                                        fontSize: 20,
-                                    }}
-                                >
-                                    {t('product.policyDetail').toUpperCase()}
-                                </Typography>
-                            </Box>
                         </Grid>
                     </Grid>
                 </Container>
