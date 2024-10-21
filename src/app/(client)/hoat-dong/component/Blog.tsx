@@ -43,6 +43,9 @@ export default function Blog({ directionImg, data, type }: any) {
                                         position: 'relative',
                                         width: 1,
                                         height: 1,
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
                                     }}
                                 >
                                     <Image
@@ -55,6 +58,7 @@ export default function Blog({ directionImg, data, type }: any) {
                                         height={1}
                                         width={1}
                                         layout="responsive"
+                                        objectFit="cover"
                                         style={{
                                             objectFit: 'contain',
                                             maxHeight: '300px',

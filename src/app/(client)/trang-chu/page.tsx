@@ -30,7 +30,7 @@ const Home = () => {
             <Grid xs={12} container>
                 <PurpleBackground />
                 <Grid item xs={12}>
-                    <Banner />
+                    <Banner bannerName={'homeBannerImg'} />
                 </Grid>
                 <Grid item xs={12}>
                     <Welcome />

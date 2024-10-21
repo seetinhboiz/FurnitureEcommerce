@@ -7,18 +7,18 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import theme from '../../theme';
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
+interface Props {
+    bannerName: string;
 }
 
-export default function Banner() {
+export default function Banner(props: Props) {
     const [banner, setBanner] = useState<IBanner>();
 
     const getBanner = () => {
         axios
-            .get(`${ApiPathEnum.Banner}`, { params: { name: 'homeBannerImg' } })
+            .get(`${ApiPathEnum.Banner}`, {
+                params: { name: props.bannerName },
+            })
             .then((res) => {
                 if (res.status === 200) {
                     setBanner(res.data.data[0]);
@@ -36,7 +36,9 @@ export default function Banner() {
                 <Grid xs={12}>
                     <Box position={'relative'}>
                         <Image
-                            src={banner?.image?.url ?? '/path/default/image.jpg'}
+                            src={
+                                banner?.image?.url ?? '/path/default/image.jpg'
+                            }
                             alt="Banner"
                             objectFit="contain"
                             layout="responsive"
