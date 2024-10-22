@@ -40,7 +40,7 @@ export default function ActivityDetailComponent() {
             >
                 <Grid item xs={12}>
                     <Typography
-                        variant="h4"
+                        variant="h3"
                         textAlign={'center'}
                         fontWeight={'bold'}
                         color={theme.palette.primary.main}
@@ -51,7 +51,7 @@ export default function ActivityDetailComponent() {
                 </Grid>
                 <Grid item xs={10} container>
                     <Typography
-                        variant="h5"
+                        variant="h2"
                         fontWeight={'bold'}
                         color={theme.palette.primary.main}
                         sx={{ paddingTop: 4, paddingBottom: 4 }}

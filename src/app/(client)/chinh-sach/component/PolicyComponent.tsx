@@ -63,7 +63,7 @@ export default function PolicyComponent() {
                     <Grid xs={8} item>
                         <Typography
                             variant="h6"
-                            textAlign={'center'} 
+                            textAlign={'center'}
                             color={theme.palette.primary.main}
                             sx={{
                                 fontSize: { xs: '1rem', sm: '1.25rem' },
@@ -82,7 +82,7 @@ export default function PolicyComponent() {
                         variant="h6"
                         textAlign={'justify'}
                         color={theme.palette.primary.main}
-                        sx={{ paddingBottom: 4 }}
+                        sx={{ py: 2 }}
                     >
                         {t('policy.policyDescription')}
                     </Typography>
@@ -645,7 +645,7 @@ export default function PolicyComponent() {
                                 height: {
                                     xs: 300,
                                     md: 400,
-                                    lg: 800
+                                    lg: 800,
                                 },
                             }}
                             position={'relative'}
