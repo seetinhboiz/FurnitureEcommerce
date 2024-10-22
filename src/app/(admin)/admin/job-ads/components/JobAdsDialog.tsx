@@ -111,7 +111,7 @@ export const JobAdsDialog: React.FC<JobAdsDialogProps> = ({
                     .then((res) => {
                         if (res.status === 201) {
                             const images = res.data.data.map((x: any) => ({
-                                id: x.public_id,
+                                id: x.id,
                                 url: x.url,
                             }));
                             const newImages =

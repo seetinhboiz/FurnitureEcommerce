@@ -22,7 +22,7 @@ const ProductBox = ({ data, type }: { data: any; type: any }) => {
             href={
                 type === 'product'
                     ? `/san-pham/${convertSlug(data.name)}-${data._id}`
-                    : `/tat-ca-san-pham?category=${convertSlug(data.name)}-${data._id}`
+                    : `/tat-ca-san-pham?nhom-san-pham=${convertSlug(data.name)}-${data._id}`
             }
         >
             <Card

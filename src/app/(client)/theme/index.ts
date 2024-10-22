@@ -47,6 +47,15 @@ const theme = responsiveFontSizes(
                     fontSize: '1.5rem',
                 },
             },
+            h3: {
+                fontSize: '1.75rem',
+                '@media (max-width:1200px)': {
+                    fontSize: '1.5rem',
+                },
+                '@media (max-width:600px)': {
+                    fontSize: '1.25rem',
+                },
+            },
             h4: {
                 fontSize: '1.5rem',
                 '@media (max-width:1200px)': {
@@ -84,7 +93,7 @@ const theme = responsiveFontSizes(
                 },
             },
             subtitle1: {
-                fontSize: '1.2rem',
+                fontSize: '1.4rem',
                 '@media (max-width:1200px)': {
                     fontSize: '0.875rem',
                 },

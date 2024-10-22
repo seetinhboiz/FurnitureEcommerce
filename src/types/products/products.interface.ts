@@ -15,10 +15,20 @@ export interface IProduct {
     _id?: string;
     name: string;
     description: string;
-    images: IImage[];
+    images: [IImage, IImage, IImage];
     price: number;
     stock: number;
     categoryId: string | ICategory;
     isNew: boolean;
     isPotential: boolean;
+    overview: string;
+    introduction: string;
+    subDescription: string;
+    design: string;
+    characteristic: string;
+    specifications: string;
+    specificationImages: [IImage, IImage];
+    certificateImages: [IImage, IImage, IImage];
+    catalogImage: IImage;
+    descriptionTitle: string;
 }

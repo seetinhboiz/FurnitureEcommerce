@@ -31,7 +31,7 @@ const AllProductComponent = () => {
 
     let categoryIdParam: any;
 
-    const searchCategory = searchParams.get('category');
+    const searchCategory = searchParams.get('nhom-san-pham');
 
     if (searchCategory) {
         categoryIdParam = searchCategory?.split('-')[1];
@@ -98,7 +98,7 @@ const AllProductComponent = () => {
                     <Grid item xs={10} container alignItems={'center'}>
                         <Grid xs={12} item>
                             <Typography
-                                variant="h4"
+                                variant="h1"
                                 color={theme.palette.primary.main}
                                 fontWeight={'bold'}
                                 textAlign={'center'}
