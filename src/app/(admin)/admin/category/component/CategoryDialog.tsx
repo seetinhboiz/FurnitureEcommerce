@@ -115,7 +115,7 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
                     .then((res) => {
                         if (res.status === 201) {
                             const image = {
-                                id: res.data.data[0].public_id,
+                                id: res.data.data[0].id,
                                 url: res.data.data[0].url,
                             };
 

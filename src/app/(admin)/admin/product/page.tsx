@@ -130,6 +130,7 @@ export default function User() {
                             onClick={() => {
                                 setType('CREATE');
                                 setOpen(true);
+                                setSelectedProduct(undefined);
                             }}
                         >
                             Sản phẩm mới

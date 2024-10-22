@@ -1,6 +1,5 @@
 'use client';
 import Footer from '@/components/Footer';
-import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import {
     Box,
     Button,
@@ -11,7 +10,6 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import contactImg from '../../../assets/images/contact.png';
 import theme from '../../theme';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
@@ -27,6 +25,7 @@ import { ApiPathEnum } from '@/api/api.path.enum';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import { isEmailRegex } from '@/types/common/regex.constants';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
 
 const ContactComponent = () => {
     const { t } = useTranslation();
@@ -98,15 +97,19 @@ const ContactComponent = () => {
                                     justifyContent={'center'}
                                     alignItems={'center'}
                                 >
-                                    <LocalPhoneOutlinedIcon
-                                        fontSize="large"
-                                        sx={{
-                                            color: contactTheme.palette.primary
-                                                .main,
-                                        }}
-                                    />
+                                    <Box
+                                        position={'relative'}
+                                        width={50}
+                                        height={1}
+                                    >
+                                        <Image
+                                            src={'/images/contact/phone.svg'}
+                                            alt="contact"
+                                            fill
+                                        />
+                                    </Box>
                                     <Typography
-                                        variant="h5"
+                                        variant="h2"
                                         fontWeight={'bold'}
                                         color={
                                             contactTheme.palette.primary.main
@@ -202,13 +205,14 @@ const ContactComponent = () => {
                                 container
                                 justifyContent={'center'}
                             >
-                                <Image
-                                    src={contactImg}
-                                    alt="contact image"
-                                    layout="responesive"
-                                    objectFit="contain"
-                                    style={{ width: '100%', height: 'auto' }}
-                                />
+                                <Box position={'relative'} width={1} height={1}>
+                                    <Image
+                                        src={'/images/contact/contact.png'}
+                                        alt="contact image"
+                                        fill
+                                        style={{ objectFit: 'contain' }}
+                                    />
+                                </Box>
                             </Grid>
                         </Grid>
                     </form>
@@ -249,13 +253,18 @@ const ContactComponent = () => {
                                 container
                                 justifyContent={'center'}
                             >
-                                <Image
-                                    src={contactImg}
-                                    alt="contact image"
-                                    layout="responesive"
-                                    objectFit="contain"
-                                    style={{ width: '100%', height: 'auto' }}
-                                />
+                                <Box
+                                    position={'relative'}
+                                    width={1}
+                                    height={500}
+                                >
+                                    <Image
+                                        src={'/images/contact/contact.png'}
+                                        alt="contact image"
+                                        fill
+                                        style={{ objectFit: 'contain' }}
+                                    />
+                                </Box>
                             </Grid>
                         </Grid>
                         <Grid xs={10} item>
@@ -267,15 +276,22 @@ const ContactComponent = () => {
                             >
                                 {t('contact.thankYou').toUpperCase()}
                             </Typography>
-                            <Typography
-                                variant="h6"
-                                color={theme.palette.primary.main}
-                                textAlign={'center'}
-                            >
-                                {t(
-                                    'contact.continueExploreOurProduct',
-                                ).toUpperCase()}
-                            </Typography>
+                            <Link href={'/trang-chu'}>
+                                <Typography
+                                    variant="h6"
+                                    color={theme.palette.primary.main}
+                                    textAlign={'center'}
+                                    sx={{
+                                        '&:hover': {
+                                            textDecoration: 'underline',
+                                        },
+                                    }}
+                                >
+                                    {t(
+                                        'contact.continueExploreOurProduct',
+                                    ).toUpperCase()}
+                                </Typography>
+                            </Link>
                         </Grid>
                     </Grid>
                 )}
