@@ -33,7 +33,6 @@ export default function Blog({ directionImg, data, type }: any) {
                                 md={4}
                                 item
                                 sx={{
-                                    borderRadius: 8,
                                     overflow: 'hidden',
                                     order: directionImg === 'right' ? 1 : 0,
                                 }}
@@ -43,9 +42,7 @@ export default function Blog({ directionImg, data, type }: any) {
                                         position: 'relative',
                                         width: 1,
                                         height: 1,
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
+                                        borderRadius: 20
                                     }}
                                 >
                                     <Image
@@ -55,13 +52,9 @@ export default function Blog({ directionImg, data, type }: any) {
                                                 : data.img
                                         }
                                         alt="Image"
-                                        height={1}
-                                        width={1}
-                                        layout="responsive"
-                                        objectFit="cover"
+                                        layout="fill"
                                         style={{
                                             objectFit: 'contain',
-                                            maxHeight: '300px',
                                         }}
                                     />
                                 </Box>
@@ -73,7 +66,9 @@ export default function Blog({ directionImg, data, type }: any) {
                                 sx={{ order: directionImg === 'right' ? 0 : 1 }}
                             >
                                 <Typography
+                                    py={1}
                                     variant="h5"
+                                    fontWeight={700}
                                     color={blogTheme.palette.primary.main}
                                     textAlign={'center'}
                                 >
@@ -88,7 +83,7 @@ export default function Blog({ directionImg, data, type }: any) {
                                     sx={{
                                         fontWeight: 'lighter',
                                         textAlign: 'justify',
-                                        marginBottom: 2,
+                                        py: 2,
                                     }}
                                 >
                                     {type === 'PRODUCT'
