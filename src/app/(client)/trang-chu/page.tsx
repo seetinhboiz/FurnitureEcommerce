@@ -1,5 +1,4 @@
 import Footer from "@/components/Footer";
-import PurpleBackground from "@/components/PurpleBackground";
 import { Grid } from "@mui/material";
 import Head from "next/head";
 import Article from "./component/Article";
@@ -28,7 +27,6 @@ const Home = () => {
                 />
             </Head>
             <Grid xs={12} container>
-                <PurpleBackground />
                 <Grid item xs={12}>
                     <Banner bannerName={'homeBannerImg'} />
                 </Grid>

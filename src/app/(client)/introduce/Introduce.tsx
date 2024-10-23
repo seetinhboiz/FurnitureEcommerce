@@ -2,14 +2,6 @@
 import PurpleBackground from '@/components/PurpleBackground';
 import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
-import lineBottomLeft from '../../assets/images/introduce/bottomleft.png';
-import lineBottomRight from '../../assets/images/introduce/bottomright.png';
-import boxImg from '../../assets/images/introduce/box.png';
-import lightImg from '../../assets/images/introduce/light.png';
-import settingImg from '../../assets/images/introduce/setting.png';
-import toolImg from '../../assets/images/introduce/tool.png';
-import lineTopLeft from '../../assets/images/introduce/topleft.png';
-import lineTopRight from '../../assets/images/introduce/topright.png';
 import { useTranslation } from 'react-i18next';
 import theme from '../theme';
 
@@ -204,12 +196,16 @@ function Item4({ isSmallScreen }: any) {
                 justifyContent={'center'}
                 maxWidth={isSmallScreen ? 60 : 100}
             >
-                <Image src={'/images/introduce/light.svg'} alt="icon" fill />
+                <Image
+                    src={'/images/introduce/light-with-circle.svg'}
+                    alt="icon"
+                    fill
+                />
             </Box>
             <Box
                 width={1}
                 maxWidth={500}
-                sx={{height:{xs: '40%', md: '80%', lg: 1}}}
+                sx={{ height: { xs: '40%', md: '80%', lg: 1 } }}
                 position={'absolute'}
                 top={isSmallScreen ? -40 : -80}
                 right={-10}
