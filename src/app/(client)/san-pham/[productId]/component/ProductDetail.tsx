@@ -156,21 +156,23 @@ export default function ProductDetail({ data }: any) {
                     <Typography>{product?.description}</Typography>
                 </Grid>
                 <Grid justifyContent={'center'} container my={2}>
-                    <Box
-                        position={'relative'}
-                        sx={{
-                            paddingBottom: '56.25%',
-                            width: 1,
-                        }}
-                        width={1}
-                    >
-                        <Image
-                            src={product?.images?.[0]?.url ?? ''}
-                            alt="product-image"
-                            fill
-                            style={{ objectFit: 'contain' }}
-                        />
-                    </Box>
+                    {product?.images[0] && (
+                        <Box
+                            position={'relative'}
+                            sx={{
+                                paddingBottom: '56.25%',
+                                width: 1,
+                            }}
+                            width={1}
+                        >
+                            <Image
+                                src={product?.images[0].url}
+                                alt="product-image-1"
+                                fill
+                                style={{ objectFit: 'contain' }}
+                            />
+                        </Box>
+                    )}
                 </Grid>
                 <Grid>
                     <Typography
@@ -195,7 +197,7 @@ export default function ProductDetail({ data }: any) {
                         >
                             <Image
                                 src={product?.images[1].url}
-                                alt={product?.images[1].id}
+                                alt={'product-image-2'}
                                 fill
                                 style={{ objectFit: 'contain' }}
                             />
@@ -219,7 +221,7 @@ export default function ProductDetail({ data }: any) {
                             >
                                 <Image
                                     src={x.url}
-                                    alt={x.id}
+                                    alt={'certificate-image'}
                                     fill
                                     style={{ objectFit: 'contain' }}
                                 />
@@ -292,23 +294,25 @@ export default function ProductDetail({ data }: any) {
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        {product?.specificationImages.map((x) => (
-                            <Box
-                                key={x.id}
-                                position={'relative'}
-                                sx={{
-                                    width: 1,
-                                    pb: '56.25%',
-                                }}
-                            >
-                                <Image
-                                    src={x.url}
-                                    fill
-                                    style={{ objectFit: 'contain' }}
-                                    alt={x.id}
-                                />
-                            </Box>
-                        ))}
+                        {product?.specificationImages &&
+                            product?.specificationImages?.length > 0 &&
+                            product?.specificationImages.map((x) => (
+                                <Box
+                                    key={x.id}
+                                    position={'relative'}
+                                    sx={{
+                                        width: 1,
+                                        pb: '56.25%',
+                                    }}
+                                >
+                                    <Image
+                                        src={x.url}
+                                        fill
+                                        style={{ objectFit: 'contain' }}
+                                        alt={'spec-image'}
+                                    />
+                                </Box>
+                            ))}
                     </Grid>
                 </Grid>
                 <Grid item justifyContent={'center'} container my={2}>
@@ -325,7 +329,7 @@ export default function ProductDetail({ data }: any) {
                         >
                             <Image
                                 src={product?.images[2].url}
-                                alt={product?.images[2].id}
+                                alt={'product-image-3'}
                                 fill
                                 style={{ objectFit: 'contain' }}
                             />
@@ -369,22 +373,24 @@ export default function ProductDetail({ data }: any) {
                     </Stack>
                     <Typography>{t('product.teamMemberSupport')}</Typography>
                 </Grid>
-                <Stack
-                    justifyContent={'center'}
-                    alignContent={'center'}
-                    my={2}
-                    width={1}
-                    height={1}
-                >
-                    <Box position={'relative'} width={1} pb={'56.25%'}>
-                        <Image
-                            src={product?.catalogImage?.url ?? ''}
-                            fill
-                            alt={'catalog'}
-                            style={{ objectFit: 'contain' }}
-                        />
-                    </Box>
-                </Stack>
+                {product?.catalogImage && (
+                    <Stack
+                        justifyContent={'center'}
+                        alignContent={'center'}
+                        my={2}
+                        width={1}
+                        height={1}
+                    >
+                        <Box position={'relative'} width={1} pb={'56.25%'}>
+                            <Image
+                                src={product?.catalogImage?.url ?? ''}
+                                fill
+                                alt={'catalog'}
+                                style={{ objectFit: 'contain' }}
+                            />
+                        </Box>
+                    </Stack>
+                )}
             </Grid>
 
             <Footer />

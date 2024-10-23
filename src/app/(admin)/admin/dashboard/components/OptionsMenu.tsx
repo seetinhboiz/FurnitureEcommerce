@@ -11,7 +11,7 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
 import { useCookies } from 'next-client-cookies';
-import {useRouter} from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 const MenuItem = styled(MuiMenuItem)({
     margin: '2px 0',
@@ -31,8 +31,9 @@ export default function OptionsMenu() {
     };
 
     const logout = () => {
-        cookies.remove('currentUser');
-        router.push('/login')
+        cookies.remove('username');
+        cookies.remove('token');
+        router.push('/login');
     };
 
     return (

@@ -146,7 +146,7 @@ const Header = () => {
     if (!mounted) return null;
 
     return (
-        <StyledAppBar position="static">
+        <StyledAppBar position="sticky">
             <StyledToolbar>
                 <ThemeProvider theme={theme}>
                     <Grid
