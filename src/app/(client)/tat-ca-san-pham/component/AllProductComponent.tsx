@@ -29,12 +29,13 @@ const AllProductComponent = () => {
     const [categoryId, setCategoryId] = useState('');
     const [title, setTitle] = useState<string>();
 
-    let categoryIdParam: any;
+    let categoryIdParam: string = '';
 
     const searchCategory = searchParams.get('nhom-san-pham');
 
     if (searchCategory) {
-        categoryIdParam = searchCategory?.split('-')[1];
+        const searchCategoryLength = searchCategory?.split('-')
+        categoryIdParam = searchCategoryLength[searchCategoryLength.length - 1];
     }
 
     const handleSelectChange = (event: SelectChangeEvent) => {

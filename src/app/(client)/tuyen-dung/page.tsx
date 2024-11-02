@@ -1,9 +1,9 @@
 import Footer from "@/components/Footer";
-import Banner from "./component/Banner";
 import Contact from "./component/Contact";
 import Discovery from "./component/Discovery";
 import RecruitmentComponent from "./component/Recruitment";
 import type { Metadata } from 'next'
+import Banner from "../trang-chu/component/Banner";
 
 export const metadata: Metadata = {
     title: 'Tuyển dụng',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const Recruitment = () => {
     return (
         <>
-            <Banner />
+            <Banner bannerName="recruitmentBannerImg" />
             <Discovery />
             <RecruitmentComponent />
             <Contact />

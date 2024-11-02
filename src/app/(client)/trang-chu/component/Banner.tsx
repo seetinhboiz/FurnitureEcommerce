@@ -32,7 +32,7 @@ export default function Banner(props: Props) {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box>
+            <Box sx={{ backgroundColor: theme.palette.primary.contrastText }}>
                 <Grid xs={12}>
                     <Box position={'relative'}>
                         <Image

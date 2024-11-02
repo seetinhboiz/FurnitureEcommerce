@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@emotion/css": "^11.13.0",
-        "@emotion/react": "^11.13.0",
+        "@emotion/react": "^11.13.3",
         "@emotion/styled": "^11.13.0",
         "@fancyapps/ui": "^5.0.36",
         "@lexical/react": "^0.17.0",

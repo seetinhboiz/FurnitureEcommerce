@@ -23,7 +23,22 @@
         "installDescription": "",
         "afterShow": "Dịch vụ sau triển lãm",
         "afterShowDescription": "Tại ePioneer, chúng tôi hiểu tầm quan trọng của việc lưu trữ hàng hóa sau triển lãm. Các giải pháp lưu trữ của chúng tôi được thiết kế để giữ cho các mặt hàng có giá trị của bạn được an toàn cho đến sự kiện tiếp theo. Với cơ sở vật chất hiện đại và đội ngũ tận tâm, chúng tôi đảm bảo rằng hàng hóa của bạn được lưu trữ trong điều kiện tối ưu, sẵn sàng sử dụng cho các triển lãm trong tương lai.",
-        "detail": "Chi tiết"
+        "detail": "Chi tiết",
+        "solution": "Giải pháp lưu trữ an toàn cho hàng hóa triển lãm",
+        "solutionDescription": "Tại ePioneer, chúng tôi hiểu tầm quan trọng của việc lưu trữ hàng hóa sau triển lãm. Các giải pháp lưu trữ của chúng tôi được thiết kế để giữ cho các mặt hàng có giá trị của bạn được an toàn cho đến sự kiện tiếp theo. Với cơ sở vật chất hiện đại và đội ngũ tận tâm, chúng tôi đảm bảo rằng hàng hóa của bạn được lưu trữ trong điều kiện tối ưu, sẵn sàng sử dụng cho các triển lãm trong tương lai.",
+        "advertiseTitle": "Mở ra những cơ hội mới với Dịch vụ quảng bá sản phẩm sau buổi trưng bày với chúng tôi",
+        "advertiseDescription": "Sau buổi triển lãm, chúng tôi sẽ giúp bạn tiếp cận khách hàng mới bằng cách quảng bá sản phẩm một cách hiệu quả.",
+        "serviceAfterExhibitionTitle": "Dịch vụ sau triển lãm toàn diện cho sản phẩm của bạn",
+        "serviceExhibitionDescription_Paragraph_1": "Tại ePioneer, chúng tôi cung cấp một loạt các dịch vụ bổ sung sau buổi triển lãm để hỗ trợ quảng bá sản phẩm của bạn. Từ quản lý hàng tồn kho đến hỗ trợ hậu cần và tiếp thị, chúng tôi đều sẵn sàng hỗ trợ bạn.",
+        "serviceExhibitionDescription_Paragraph_2": "Mở ra những cơ hội mới với Dịch vụ quảng bá sản phẩm sau buổi trưng bày với ePioneer. Sau buổi triển lãm ePioneer sẽ giúp các xưởng tiếp cận khách hàng mới bằng cách quảng bá sản phẩm một cách hiệu quả qua các hoạt động online và offline.",
+        "serviceInfomationTitle_1": "Quản lý kho hàng",
+        "serviceInfomationDescription_1": "Hợp lý hóa quy trình quản lý kho sản phẩm của bạn với các giải pháp hiệu quả của chúng tôi.",
+        "serviceInfomationTitle_2": "Hỗ trợ hậu cần",
+        "serviceInfomationDescription_2": "Đảm bảo việc vận chuyển các hàng hóa triển lãm của bạn được suôn sẻ.",
+        "serviceInfomationTitle_3": "Hỗ trợ hậu cần",
+        "serviceInfomationDescription_3": "Quảng cáo sản phẩm của bạn tới khách hàng mới bằng các chiến lược tiếp thị được nhắm mục tiêu của chúng tôi.",
+        "solutionStorage": "Giải Pháp Lưu Trữ Hiệu Quả",
+        "solutionStorageDescription": "Khám phá các dịch vụ hậu triển lãm toàn diện của chúng tôi bao gồm các giải pháp lưu trữ an toàn và thuận tiện. Chúng tôi giúp bạn hợp lý hóa quy trình triển lãm và đảm bảo tài sản quý giá của bạn được chăm sóc tốt."
     },
     "product": {
         "newProduct": "Sản phẩm mới",
@@ -38,7 +53,6 @@
         "specifications": " Thông số kỹ thuật",
         "storeCriteria": "Với tiêu chí \"Make your life better - Nâng tầm cuộc sống\"",
         "teamMemberSupport": "Đội ngũ nhân viên tại ePioneer luôn sẵn sàng hỗ trợ khách hàng hết mình và đảm bảo luôn đi cùng khách hàng để giải quyết các khó khăn gặp phải. Tại đây, chúng tôi tìm kiếm các đối tác lâu dài để cùng nhau phát triển."
-        
     },
     "recruitment": {
         "discovery": {

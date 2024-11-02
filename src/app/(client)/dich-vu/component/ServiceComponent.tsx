@@ -11,9 +11,9 @@ import {
     ThemeProvider,
     Typography,
 } from '@mui/material';
-// import lightImg from '../../../assets/images/introduce/light.png';
-// import settingImg from '../../../assets/images/introduce/setting.png';
-// import toolImg from '../../../assets/images/introduce/tool.png';
+import lightImg from '/public/images/introduce/light.svg';
+import gearImg from '/public/images/introduce/gear.svg';
+import toolImg from '/public/images/introduce/tool.svg';
 import theme from '../../theme';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
@@ -25,21 +25,21 @@ const ServiceComponent = () => {
     const serviceData = [
         {
             title: t('service.rental').toUpperCase(),
-            // img: settingImg,
-            img: '',
+            img: gearImg,
             description: t('service.rentalDescription'),
+            link: '/dich-vu/chi-tiet',
         },
         {
             title: t('service.install').toUpperCase(),
-            // img: toolImg,
-            img: '',
+            img: toolImg,
             description: t('service.installDescription'),
+            link: '#',
         },
         {
             title: t('service.afterShow').toUpperCase(),
-            // img: lightImg,
-            img: '',
+            img: lightImg,
             description: t('service.afterShowDescription'),
+            link: '/dich-vu-sau-trien-lam',
         },
     ];
 
@@ -52,18 +52,18 @@ const ServiceComponent = () => {
                     justifyContent={'space-evenly'}
                     sx={{ paddingTop: 8, paddingBottom: 8 }}
                 >
-                    {serviceData.map(({ title, description, img }, index) => (
-                        <Grid
-                            xs={10}
-                            md={3}
-                            item
-                            justifyContent={'center'}
-                            container
-                            key={index}
-                            sx={{ mt: 1, mb: 1 }}
-                        >
-                            <Grid xs={12}>
-                                <Link href={`/dich-vu/chi-tiet`}>
+                    {serviceData.map(
+                        ({ title, description, img, link }, index) => (
+                            <Grid
+                                xs={10}
+                                md={3}
+                                item
+                                justifyContent={'center'}
+                                container
+                                key={index}
+                                sx={{ mt: 1, mb: 1 }}
+                            >
+                                <Grid xs={12}>
                                     <Paper elevation={24}>
                                         <Card
                                             sx={{
@@ -80,8 +80,7 @@ const ServiceComponent = () => {
                                                         serviceTheme.palette
                                                             .primary.main,
                                                 }}
-                                                // image={img.src}
-                                                image={img}
+                                                image={img.src}
                                                 title="lightImg"
                                                 component="img"
                                                 style={{
@@ -90,11 +89,12 @@ const ServiceComponent = () => {
                                                     paddingTop: 20,
                                                 }}
                                             />
-                                            <CardContent>
+                                            <CardContent
+                                                sx={{ overflow: 'hidden' }}
+                                            >
                                                 <Typography
                                                     gutterBottom
-                                                    variant="h4"
-                                                    component="div"
+                                                    variant="h5"
                                                     color={
                                                         serviceTheme.palette
                                                             .primary.main
@@ -112,13 +112,12 @@ const ServiceComponent = () => {
                                                     }
                                                     textAlign={'justify'}
                                                     sx={{
-                                                        display: '-webkit-box',
-                                                        WebkitLineClamp: 12,
-                                                        WebkitBoxOrient:
-                                                            'vertical',
                                                         overflow: 'hidden',
                                                         textOverflow:
                                                             'ellipsis',
+                                                        display: '-webkit-box',
+                                                        WebkitLineClamp: 7,
+                                                        WebkitBoxOrient: 'vertical'
                                                     }}
                                                 >
                                                     {description}
@@ -129,15 +128,17 @@ const ServiceComponent = () => {
                                                 sx={{ mt: 'auto' }}
                                             >
                                                 <Button size="small">
-                                                    {t('service.detail')}
+                                                    <Link href={link}>
+                                                        {t('service.detail')}
+                                                    </Link>
                                                 </Button>
                                             </CardActions>
                                         </Card>
                                     </Paper>
-                                </Link>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    ))}
+                        ),
+                    )}
                 </Grid>
                 <Footer />
             </Grid>

@@ -39,10 +39,12 @@ export default function Blog({ directionImg, data, type }: any) {
                             >
                                 <Box
                                     sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
                                         position: 'relative',
                                         width: 1,
                                         height: 1,
-                                        borderRadius: 20
+                                        borderRadius: 20,
                                     }}
                                 >
                                     <Image
@@ -52,9 +54,13 @@ export default function Blog({ directionImg, data, type }: any) {
                                                 : data.img
                                         }
                                         alt="Image"
-                                        layout="fill"
+                                        layout="responsive"
+                                        height={1}
+                                        width={1}
                                         style={{
                                             objectFit: 'contain',
+                                            maxHeight: 300,
+                                            width: '100%',
                                         }}
                                     />
                                 </Box>
