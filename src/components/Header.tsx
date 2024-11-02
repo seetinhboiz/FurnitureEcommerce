@@ -165,11 +165,14 @@ const Header = () => {
                                 onClick={() => {
                                     router.push('/');
                                 }}
+                                display={'flex'}
+                                alignItems={'center'}
                             >
                                 <Image
                                     src={'/images/logoHeader.jpg'}
                                     alt="logo"
-                                    fill
+                                    height={100}
+                                    width={100}
                                 />
                             </Box>
                         </Grid>

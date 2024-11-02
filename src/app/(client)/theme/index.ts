@@ -30,45 +30,45 @@ const theme = responsiveFontSizes(
         typography: {
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
             h1: {
-                fontSize: '2.5rem',
+                fontSize: '3rem',
                 '@media (max-width:1200px)': {
-                    fontSize: '2rem',
+                    fontSize: '3rem',
                 },
                 '@media (max-width:600px)': {
-                    fontSize: '1.75rem',
+                    fontSize: '2rem',
                 },
             },
             h2: {
-                fontSize: '2rem',
+                fontSize: '2.5rem',
                 '@media (max-width:1200px)': {
-                    fontSize: '1.75rem',
+                    fontSize: '2.5rem',
                 },
                 '@media (max-width:600px)': {
                     fontSize: '1.5rem',
                 },
             },
             h3: {
-                fontSize: '1.75rem',
+                fontSize: '2.25rem',
                 '@media (max-width:1200px)': {
-                    fontSize: '1.5rem',
+                    fontSize: '2.25rem',
                 },
                 '@media (max-width:600px)': {
-                    fontSize: '1.25rem',
+                    fontSize: '1.75rem',
                 },
             },
             h4: {
-                fontSize: '1.5rem',
+                fontSize: '2rem',
                 '@media (max-width:1200px)': {
-                    fontSize: '1.25rem',
+                    fontSize: '2rem',
                 },
                 '@media (max-width:600px)': {
-                    fontSize: '1.25rem',
+                    fontSize: '1.5rem',
                 },
             },
             h6: {
-                fontSize: '1.125rem',
+                fontSize: '1.25rem',
                 '@media (max-width:1200px)': {
-                    fontSize: '1rem',
+                    fontSize: '1.25rem',
                 },
                 '@media (max-width:600px)': {
                     fontSize: '0.875rem',

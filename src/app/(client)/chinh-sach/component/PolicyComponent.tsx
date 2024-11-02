@@ -1,29 +1,13 @@
 'use client';
-import { ApiPathEnum } from '@/api/api.path.enum';
-import axios from '@/api/axios.instance';
 import Footer from '@/components/Footer';
-import { IBanner } from '@/types/products/products.interface';
 import { Box, Grid, ThemeProvider, Typography } from '@mui/material';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import theme from '../../theme';
 import { useTranslation } from 'react-i18next';
+import theme from '../../theme';
+import Banner from '../../trang-chu/component/Banner';
 
 export default function PolicyComponent() {
     const { t } = useTranslation();
-    const [banner, setBanner] = useState<IBanner>();
-
-    const getBanner = (name: string) => {
-        axios.get(`${ApiPathEnum.Banner}`, { params: { name } }).then((res) => {
-            if (res.status === 200) {
-                setBanner(res.data.data[0]);
-            }
-        });
-    };
-
-    useEffect(() => {
-        getBanner('policyBannerImg');
-    }, []);
 
     return (
         <ThemeProvider theme={theme}>
@@ -33,50 +17,9 @@ export default function PolicyComponent() {
                 justifyContent={'center'}
                 sx={{ backgroundColor: theme.palette.primary.contrastText }}
             >
-                <Grid
-                    container
-                    xs={12}
-                    sx={{
-                        backgroundImage: `url(${banner?.image.url})`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        paddingTop: { xs: 4, md: 16 },
-                        paddingBottom: { xs: 4, md: 16 },
-                    }}
-                >
-                    <Grid xs={8} item>
-                        <Typography
-                            variant="h4"
-                            fontWeight={'bold'}
-                            textAlign={'center'}
-                            color={theme.palette.primary.main}
-                            sx={{
-                                paddingTop: 4,
-                                paddingBottom: 4,
-                                fontSize: { xs: '1rem', sm: '2.125rem' },
-                            }}
-                        >
-                            CÙNG NHAU NÂNG CAO THÀNH CÔNG
-                        </Typography>
-                    </Grid>
-                    <Grid xs={8} item>
-                        <Typography
-                            variant="h6"
-                            textAlign={'center'}
-                            color={theme.palette.primary.main}
-                            sx={{
-                                fontSize: { xs: '1rem', sm: '1.25rem' },
-                                paddingBottom: 4,
-                            }}
-                        >
-                            Tại ePioneer, chúng tôi chuyên cung cấp các giải
-                            pháp sáng tạo và chất lượng, cùng nhau nâng cao
-                            thành công.
-                        </Typography>
-                    </Grid>
+                <Grid xs={12}>
+                    <Banner bannerName="policyBannerImg" />
                 </Grid>
-
                 <Grid xs={10} item>
                     <Typography
                         variant="h6"

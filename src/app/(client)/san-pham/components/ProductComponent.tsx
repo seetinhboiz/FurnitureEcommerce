@@ -94,7 +94,7 @@ export default function ProductComponent() {
                             sx={{ marginBottom: '20px' }}
                         >
                             <Typography
-                                variant="h4"
+                                variant="h6"
                                 color={theme.palette.primary.main}
                                 fontWeight={'bold'}
                                 textAlign="justify"
