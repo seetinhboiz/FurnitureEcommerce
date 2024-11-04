@@ -132,7 +132,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
         _id: type === 'CREATE' ? '' : product?._id,
         name: type === 'CREATE' ? '' : product?.name,
         description: type === 'CREATE' ? '' : product?.description,
-        images: type === 'CREATE' ? [] : product?.images,
+        images: type === 'CREATE' ? [] : (product?.images ?? []),
         price: type === 'CREATE' ? 0 : product?.price,
         stock: type === 'CREATE' ? 0 : product?.stock,
         categoryId:
@@ -140,13 +140,14 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
         isNew: type === 'CREATE' ? false : product?.isNew,
         isPotential: type === 'CREATE' ? false : product?.isPotential,
         catalogImage: type === 'CREATE' ? null : product?.catalogImage,
-        certificateImages: type === 'CREATE' ? [] : product?.certificateImages,
+        certificateImages:
+            type === 'CREATE' ? [] : (product?.certificateImages ?? []),
         characteristic: type === 'CREATE' ? '' : product?.characteristic,
         design: type === 'CREATE' ? '' : product?.design,
         introduction: type === 'CREATE' ? '' : product?.introduction,
         overview: type === 'CREATE' ? '' : product?.overview,
         specificationImages:
-            type === 'CREATE' ? [] : product?.specificationImages,
+            type === 'CREATE' ? [] : (product?.specificationImages ?? []),
         specifications: type === 'CREATE' ? '' : product?.specifications,
         subDescription: type === 'CREATE' ? '' : product?.subDescription,
         descriptionTitle: type === 'CREATE' ? '' : product?.descriptionTitle,
@@ -489,7 +490,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                         </Typography>
                     )}
                     <List>
-                        {formik.values.images.map((x) => (
+                        {formik.values.images?.map((x) => (
                             <ListItem
                                 key={x.id}
                                 sx={{ gap: 2 }}
@@ -541,7 +542,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                         <Typography>(Tối đa 3 hình)</Typography>
                     </Stack>
                     <List>
-                        {formik.values.certificateImages.map((x) => (
+                        {formik.values.certificateImages?.map((x) => (
                             <ListItem
                                 key={x.id}
                                 sx={{ gap: 2 }}
@@ -738,7 +739,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                                 <Typography>(Tối đa 2 hình)</Typography>
                             </Stack>
                             <List>
-                                {formik.values.specificationImages.map((x) => (
+                                {formik.values.specificationImages?.map((x) => (
                                     <ListItem
                                         key={x.id}
                                         sx={{ gap: 2 }}
