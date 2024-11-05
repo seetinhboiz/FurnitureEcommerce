@@ -11,7 +11,7 @@ import {
     ThemeProvider,
     Typography,
 } from '@mui/material';
-import lightImg from '/public/images/introduce/light.svg';
+import lightImg from '/public/images/introduce/light-within-circle.svg';
 import gearImg from '/public/images/introduce/gear.svg';
 import toolImg from '/public/images/introduce/tool.svg';
 import theme from '../../theme';
