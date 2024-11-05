@@ -32,9 +32,9 @@ export default function Banner(props: Props) {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ backgroundColor: theme.palette.primary.contrastText }}>
-                <Grid xs={12}>
-                    <Box position={'relative'}>
+            <Box sx={{ backgroundColor: theme.palette.primary.contrastText, width: "100%" }}>
+                <Grid item xs={12}>
+                    <Box>
                         <Image
                             src={
                                 banner?.image?.url ?? '/path/default/image.jpg'

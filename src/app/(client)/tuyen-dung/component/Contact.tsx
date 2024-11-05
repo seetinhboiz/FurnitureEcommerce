@@ -1,9 +1,9 @@
 'use client';
 import { Grid, ThemeProvider, Typography } from '@mui/material';
 import Image from 'next/image';
-import emailImg from '../../../assets/images/icon/emailIcon.png';
-import locationImg from '../../../assets/images/icon/locationIcon.png';
-import phoneImg from '../../../assets/images/icon/phoneIcon.png';
+import email from '/public/images/recruitment/email.svg';
+import phone from '/public/images/recruitment/phone.svg';
+import location from '/public/images/recruitment/location.svg';
 import theme from '../../theme';
 import { useTranslation } from 'react-i18next';
 
@@ -63,7 +63,12 @@ export default function Contact() {
                             container
                             sx={{ mb: 2 }}
                         >
-                            <Image src={emailImg} alt="icon" />
+                            <Image
+                                src={email}
+                                alt="icon"
+                                width={100}
+                                height={100}
+                            />
                         </Grid>
                         <Grid xs={12} item justifyContent={'center'} container>
                             <Typography
@@ -108,7 +113,12 @@ export default function Contact() {
                             container
                             sx={{ mb: 2 }}
                         >
-                            <Image src={phoneImg} alt="icon" />
+                            <Image
+                                src={phone}
+                                alt="icon"
+                                width={100}
+                                height={100}
+                            />
                         </Grid>
                         <Grid xs={12} item justifyContent={'center'} container>
                             <Typography
@@ -153,7 +163,12 @@ export default function Contact() {
                             container
                             sx={{ mb: 2 }}
                         >
-                            <Image src={locationImg} alt="icon" />
+                            <Image
+                                src={location}
+                                alt="icon"
+                                width={100}
+                                height={100}
+                            />
                         </Grid>
                         <Grid xs={12} item justifyContent={'center'} container>
                             <Typography

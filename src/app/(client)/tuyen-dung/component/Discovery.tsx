@@ -2,10 +2,11 @@
 import { Divider, Grid, ThemeProvider, Typography } from '@mui/material';
 import theme from '../../theme';
 import teamWorkImg from '../../../assets/images/teamWork.jpg';
-import hatImg from '../../../assets/images/icon/hatIcon.png';
-import clockkImg from '../../../assets/images/icon/clockIcon.png';
-import handImg from '../../../assets/images/icon/handShake.png';
-import stonkImg from '../../../assets/images/icon/stonk.png';
+import education from '/public/images/recruitment/education.svg';
+import clock_8 from '/public/images/recruitment/8-o-clock.svg';
+import clock_4 from '/public/images/recruitment/4-o-clock.svg';
+import handshake from '/public/images/recruitment/handshake.svg';
+import chart from '/public/images/recruitment/chart.svg';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
@@ -65,10 +66,10 @@ export default function Discovery() {
                     >
                         <Grid xs={12} container justifyContent={'center'}>
                             <Image
-                                src={hatImg}
+                                src={education}
                                 alt="Hat Image"
-                                layout="responsive"
-                                style={{ maxWidth: 100 }}
+                                height={100}
+                                width={100}
                             />
                         </Grid>
                         <Typography
@@ -98,10 +99,10 @@ export default function Discovery() {
                     >
                         <Grid xs={12} container justifyContent={'center'}>
                             <Image
-                                src={clockkImg}
+                                src={clock_8}
                                 alt="Hat Image"
-                                layout="responsive"
-                                style={{ maxWidth: 100 }}
+                                height={100}
+                                width={100}
                             />
                         </Grid>
                         <Typography
@@ -177,7 +178,7 @@ export default function Discovery() {
                         </Typography>
                     </Grid>
                     <Grid xs={6} item container justifyContent={'center'}>
-                        <Image src={clockkImg} alt="" width={100} />
+                        <Image src={clock_4} alt="" height={100} width={100} />
                         <Typography
                             variant={'h6'}
                             color={theme.palette.primary.main}
@@ -205,7 +206,12 @@ export default function Discovery() {
                         justifyContent={'center'}
                         sx={{ order: { xs: 2, sm: 1 } }}
                     >
-                        <Image src={handImg} alt="" width={100} />
+                        <Image
+                            src={handshake}
+                            alt=""
+                            height={100}
+                            width={100}
+                        />
                         <Typography
                             variant={'h6'}
                             color={theme.palette.primary.main}
@@ -269,7 +275,7 @@ export default function Discovery() {
                         </Typography>
                     </Grid>
                     <Grid xs={6} item container justifyContent={'center'}>
-                        <Image src={stonkImg} alt="" width={100} />
+                        <Image src={chart} alt="" height={100} width={100} />
                         <Typography
                             variant={'h6'}
                             color={theme.palette.primary.main}
