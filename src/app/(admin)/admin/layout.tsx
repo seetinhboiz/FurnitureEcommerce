@@ -3,6 +3,7 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import getDashboardTheme from './dashboard/theme/getDashboardTheme';
+import { ToastContainer } from 'react-toastify';
 
 export default function RootLayout({
     children,
@@ -18,6 +19,7 @@ export default function RootLayout({
                     {children}
                 </LocalizationProvider>
             </ThemeProvider>
+            <ToastContainer />
         </main>
     );
 }
