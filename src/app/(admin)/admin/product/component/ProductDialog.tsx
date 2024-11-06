@@ -35,6 +35,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
 import { LoadingButton } from '@mui/lab';
 import {
+    createFailed,
+    createSuccessfully,
     maximum255Character,
     maximum50Character,
     maximumThreeImages,
@@ -42,7 +44,10 @@ import {
     moreThanZero,
     mustHaveOneImage,
     requiredText,
+    updateFailed,
+    updateSuccessfully,
 } from '@/types/common/notification.constant';
+import { toast } from 'react-toastify';
 
 interface ProductDialogProps {
     open: boolean;
@@ -71,11 +76,17 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
 
     const createProduct = (product: IProduct) => {
         delete product._id;
-        axios.post(ApiPathEnum.Product, product).then((res) => {
-            if (res.status === 201) {
-                setReload(!reload);
-            }
-        });
+        axios
+            .post(ApiPathEnum.Product, product)
+            .then((res) => {
+                if (res.status === 201) {
+                    setReload(!reload);
+                    toast.success(createSuccessfully);
+                }
+            })
+            .catch((res) => {
+                toast.error(`${createFailed}\n${res.message}`);
+            });
     };
 
     const updateProduct = (product: IProduct) => {
@@ -84,7 +95,11 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
             .then((res) => {
                 if (res.status === 200) {
                     setReload(!reload);
+                    toast.success(updateSuccessfully);
                 }
+            })
+            .catch((res) => {
+                toast.error(`${updateFailed}\n${res?.message}`);
             });
     };
 
@@ -130,27 +145,30 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
 
     const initialValues = {
         _id: type === 'CREATE' ? '' : product?._id,
-        name: type === 'CREATE' ? '' : product?.name,
-        description: type === 'CREATE' ? '' : product?.description,
+        name: type === 'CREATE' ? '' : (product?.name ?? ''),
+        description: type === 'CREATE' ? '' : (product?.description ?? ''),
         images: type === 'CREATE' ? [] : (product?.images ?? []),
         price: type === 'CREATE' ? 0 : product?.price,
         stock: type === 'CREATE' ? 0 : product?.stock,
         categoryId:
             type === 'CREATE' ? '' : (product?.categoryId as ICategory)?._id,
         isNew: type === 'CREATE' ? false : product?.isNew,
-        isPotential: type === 'CREATE' ? false : product?.isPotential,
-        catalogImage: type === 'CREATE' ? null : product?.catalogImage,
+        isPotential: type === 'CREATE' ? false : (product?.isPotential ?? ''),
+        catalogImage: type === 'CREATE' ? null : (product?.catalogImage ?? ''),
         certificateImages:
             type === 'CREATE' ? [] : (product?.certificateImages ?? []),
-        characteristic: type === 'CREATE' ? '' : product?.characteristic,
+        characteristic:
+            type === 'CREATE' ? '' : (product?.characteristic ?? ''),
         design: type === 'CREATE' ? '' : product?.design,
-        introduction: type === 'CREATE' ? '' : product?.introduction,
-        overview: type === 'CREATE' ? '' : product?.overview,
+        introduction: type === 'CREATE' ? '' : (product?.introduction ?? ''),
+        overview: type === 'CREATE' ? '' : (product?.overview ?? ''),
         specificationImages:
             type === 'CREATE' ? [] : (product?.specificationImages ?? []),
         specifications: type === 'CREATE' ? '' : product?.specifications,
-        subDescription: type === 'CREATE' ? '' : product?.subDescription,
-        descriptionTitle: type === 'CREATE' ? '' : product?.descriptionTitle,
+        subDescription:
+            type === 'CREATE' ? '' : (product?.subDescription ?? ''),
+        descriptionTitle:
+            type === 'CREATE' ? '' : (product?.descriptionTitle ?? ''),
     } as IProduct;
 
     const formik = useFormik({
@@ -738,6 +756,11 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                                 </LoadingButton>
                                 <Typography>(Tối đa 2 hình)</Typography>
                             </Stack>
+                            {Boolean(formik.errors.specificationImages) && (
+                                <Typography color={'red'}>
+                                    {formik.errors.specificationImages?.toString()}
+                                </Typography>
+                            )}
                             <List>
                                 {formik.values.specificationImages?.map((x) => (
                                     <ListItem
