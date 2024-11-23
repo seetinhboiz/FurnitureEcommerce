@@ -1,6 +1,7 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
 import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
+import { updateFailed, updateSuccessfully } from '@/types/common/notification.constant';
 import { IBanner, IImage } from '@/types/products/products.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -22,6 +23,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface DialogProps {
     open: boolean;
@@ -74,8 +76,12 @@ const BannerDialog: React.FC<DialogProps> = ({
             .then((res) => {
                 if (res.status === 200) {
                     setReload(!reload);
+                    toast.success(updateSuccessfully);
                     getBanner('');
                 }
+            })
+            .catch((res) => {
+                toast.error(`${updateFailed}\n${res?.message}`);
             });
     };
 

@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { IJobAds } from '@/types/job-ads/job-ads.interface';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { maximum50Character, moreThanZero, requiredText } from '@/types/common/notification.constant';
+import { createFailed, createSuccessfully, maximum50Character, moreThanZero, requiredText, updateSuccessfully } from '@/types/common/notification.constant';
 import Editor from '@/components/LexicalEditor/LexicalEditor';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
@@ -16,6 +16,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
 import { isHtmlTagRegex } from '@/types/common/regex.constants';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { toast } from 'react-toastify';
 
 interface JobAdsDialogProps {
     open: boolean;
@@ -74,27 +75,36 @@ export const JobAdsDialog: React.FC<JobAdsDialogProps> = ({
     const handleCreateJobAds = async (jobAds: IJobAds): Promise<boolean> => {
         delete jobAds._id;
 
-        return !! await axios.post(ApiPathEnum.JobAds, jobAds, config).then(res => {
-            if (res.status === 201) {
-                setReload(!reload)
-                return true;
-            }
-        }).catch(() => {
-            return false;
-        })
-    }
+        return !!(await axios
+            .post(ApiPathEnum.JobAds, jobAds, config)
+            .then((res) => {
+                if (res.status === 201) {
+                    setReload(!reload);
+                    toast.success(createSuccessfully);
+                    return true;
+                }
+            })
+            .catch((res) => {
+                toast.error(`${createFailed}\n${res.message}`);
+                return false;
+            }));
+    };
 
     const handleUpdateJobAds = async (jobAds: IJobAds): Promise<boolean> => {
-        return !! await axios.put(`${ApiPathEnum.JobAds}/${jobAds._id}`, jobAds, config).then(res => {
-            if (res.status === 200) {
-                setReload(!reload)
-                return true;
-
-            }
-        }).catch(() => {
-            return false;
-        })
-    }
+        return !!(await axios
+            .put(`${ApiPathEnum.JobAds}/${jobAds._id}`, jobAds, config)
+            .then((res) => {
+                if (res.status === 200) {
+                    setReload(!reload);
+                    toast.success(updateSuccessfully);
+                    return true;
+                }
+            })
+            .catch((res) => {
+                toast.error(`${createFailed}\n${res.message}`);
+                return false;
+            }));
+    };
 
     const handleUploadImage = (evt: any) => {
         if (evt.target.files) {
