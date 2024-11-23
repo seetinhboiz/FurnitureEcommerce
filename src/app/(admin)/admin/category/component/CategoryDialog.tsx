@@ -1,30 +1,37 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
+import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
 import { ICategory } from '@/types/categories/categories.interface';
 import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    TextField,
-    DialogActions,
-    Button,
-    ListItem,
-    IconButton,
-    ListItemAvatar,
+    createFailed,
+    createSuccessfully,
+    updateFailed,
+    updateSuccessfully,
+} from '@/types/common/notification.constant';
+import { IImage } from '@/types/products/products.interface';
+import { ApiResponse } from '@/types/utils/api-response.interface';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { LoadingButton } from '@mui/lab';
+import {
     Avatar,
     Box,
-    ListItemText,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    IconButton,
     List,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    TextField,
 } from '@mui/material';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { ApiResponse } from '@/types/utils/api-response.interface';
-import { IImage } from '@/types/products/products.interface';
-import DeleteIcon from '@mui/icons-material/Delete';
-import NotfoundImage from '../../../../assets/images/common/not-found.png';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
-import { LoadingButton } from '@mui/lab';
 import { useCookies } from 'next-client-cookies';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import NotfoundImage from '../../../../assets/images/common/not-found.png';
 
 interface CategoryDialogProps {
     open: boolean;
@@ -59,11 +66,17 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
     };
 
     const createCategory = (category: ICategory) => {
-        axios.post(ApiPathEnum.Category, category, config).then((res) => {
-            if (res.status === 201) {
-                setReload(!reload);
-            }
-        });
+        axios
+            .post(ApiPathEnum.Category, category, config)
+            .then((res) => {
+                if (res.status === 201) {
+                    setReload(!reload);
+                    toast.success(createSuccessfully);
+                }
+            })
+            .catch((res) => {
+                toast.error(`${createFailed}\n${res.message}`);
+            });
     };
 
     const updateCategory = (category: ICategory) => {
@@ -72,7 +85,11 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
             .then((res) => {
                 if (res.status === 200) {
                     setReload(!reload);
+                    toast.success(updateSuccessfully);
                 }
+            })
+            .catch((res) => {
+                toast.error(`${updateFailed}\n${res?.message}`);
             });
     };
 

@@ -1,11 +1,19 @@
 'use client';
+import { ApiPathEnum } from '@/api/api.path.enum';
+import axios from '@/api/axios.instance';
+import {
+    createFailed,
+    updateSuccessfully,
+} from '@/types/common/notification.constant';
+import { Contact } from '@/types/contacts/contact.interface';
+import { ApiResponse } from '@/types/utils/api-response.interface';
 import {
     alpha,
     Box,
+    Checkbox,
     PaletteMode,
-    Stack,
-    Typography,
     Paper,
+    Stack,
     Table,
     TableBody,
     TableCell,
@@ -13,17 +21,14 @@ import {
     TableHead,
     TablePagination,
     TableRow,
-    Checkbox,
+    Typography,
 } from '@mui/material';
+import { useCookies } from 'next-client-cookies';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Header from '../dashboard/components/Header';
 import Navbar from '../dashboard/components/Navbar';
 import SideMenu from '../dashboard/components/SideMenu';
-import axios from '@/api/axios.instance';
-import { ApiResponse } from '@/types/utils/api-response.interface';
-import { ApiPathEnum } from '@/api/api.path.enum';
-import { Contact } from '@/types/contacts/contact.interface';
-import { useCookies } from 'next-client-cookies';
 
 export default function User() {
     const cookie = useCookies();
@@ -78,6 +83,7 @@ export default function User() {
             )
             .then((res) => {
                 if (res.status === 200) {
+                    toast.success(updateSuccessfully);
                     const newContacts = [...contacts];
                     const index = newContacts.findIndex(
                         (item) => item._id === contact._id,
@@ -86,6 +92,9 @@ export default function User() {
                     newContacts[index] = res.data.data as Contact;
                     setContacts(newContacts);
                 }
+            })
+            .catch((res) => {
+                toast.error(`${createFailed}\n${res.message}`);
             });
     };
 
