@@ -1,3 +1,5 @@
+'use client';
+
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -8,8 +10,18 @@ import Link from 'next/link';
 import { MyGoogleMap } from './GoogleMap';
 import logo from '../app/assets/images/footerLogo.png';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Footer() {
+    const router = useRouter();
+
+    const linkProperty = {
+        cursor: 'pointer',
+        '&:hover': {
+            fontWeight: 800,
+        },
+    };
+
     return (
         <Box>
             <Grid
@@ -206,18 +218,37 @@ export default function Footer() {
                                     >
                                         Về EPIONEER
                                     </Typography>
-                                    <Typography variant="body2">
+                                    <Typography
+                                        variant="body2"
+                                        onClick={() => router.push('/san-pham')}
+                                        sx={linkProperty}
+                                    >
                                         Sản phẩm hàng hoá, thương mại.
                                     </Typography>
-                                    <Typography variant="body2">
+                                    <Typography
+                                        variant="body2"
+                                        onClick={() =>
+                                            router.push('/dich-vu/chi-tiet')
+                                        }
+                                        sx={linkProperty}
+                                    >
                                         Dịch vụ cho thuê trang thiết bị hội chợ,
                                         triển lãm.
                                     </Typography>
-                                    <Typography variant="body2">
+                                    <Typography
+                                        variant="body2"
+                                        sx={linkProperty}
+                                    >
                                         Dịch vụ thi công lắp đặt đèn chiếu sáng,
                                         nguồn điện.
                                     </Typography>
-                                    <Typography variant="body2">
+                                    <Typography
+                                        variant="body2"
+                                        onClick={() =>
+                                            router.push('dich-vu-sau-trien-lam')
+                                        }
+                                        sx={linkProperty}
+                                    >
                                         Dịch vụ sau triển lãm.
                                     </Typography>
                                 </Grid>

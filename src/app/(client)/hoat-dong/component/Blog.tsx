@@ -51,7 +51,7 @@ export default function Blog({ directionImg, data, type }: any) {
                                         src={
                                             type === 'PRODUCT'
                                                 ? data.images[0].url
-                                                : data.img
+                                                : data.images[0].url
                                         }
                                         alt="Image"
                                         layout="responsive"
@@ -80,7 +80,7 @@ export default function Blog({ directionImg, data, type }: any) {
                                 >
                                     {type === 'PRODUCT'
                                         ? t(`${data.name}`).toUpperCase()
-                                        : t(`${data.title}`).toUpperCase()}
+                                        : data.name.toUpperCase()}
                                 </Typography>
                                 <Divider />
                                 <Typography
@@ -94,7 +94,10 @@ export default function Blog({ directionImg, data, type }: any) {
                                 >
                                     {type === 'PRODUCT'
                                         ? t(`${data.description}`)
-                                        : t(`${data.subtitle}`)}
+                                        : data?.description.slice(
+                                              0,
+                                              data?.description.indexOf('.'),
+                                          )}
                                 </Typography>
                             </Grid>
                         </Grid>

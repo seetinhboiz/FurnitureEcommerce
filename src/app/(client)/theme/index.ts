@@ -73,6 +73,9 @@ const theme = responsiveFontSizes(
                 '@media (max-width:600px)': {
                     fontSize: '0.875rem',
                 },
+                '@media (max-width:400px)': {
+                    fontSize: '0.75rem',
+                },
             },
             body1: {
                 fontSize: '1.2rem',

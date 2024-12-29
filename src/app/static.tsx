@@ -65,49 +65,6 @@ export const items = [
     },
 ];
 
-export const activities = [
-    {
-        id: 1,
-        img: '/images/activity/joinExhibition.png',
-        title: 'activity.title1',
-        subtitle: 'activity.subtitle1',
-        description: {
-            firstTypography: 'activity.firstDescription1',
-            mainTypography: 'activity.mainDescription1',
-        },
-    },
-    {
-        id: 2,
-        img: '/images/activity/meeting.png',
-        title: 'activity.title2',
-        subtitle: 'activity.subtitle2',
-        description: {
-            firstTypography: 'activity.firstDescription2',
-            mainTypography: 'activity.mainDescription2',
-        },
-    },
-    {
-        id: 3,
-        img: '/images/activity/storage.png',
-        title: 'activity.title3',
-        subtitle: 'activity.subtitle3',
-        description: {
-            firstTypography: 'activity.firstDescription3',
-            mainTypography: 'activity.mainDescription3',
-        },
-    },
-    {
-        id: 4,
-        img: '/images/activity/welcomeEp.png',
-        title: 'activity.title4',
-        subtitle: 'activity.subtitle4',
-        description: {
-            firstTypography: 'activity.firstDescription4',
-            mainTypography: 'activity.mainDescription4',
-        },
-    },
-];
-
 export const blogs = [
     {
         id: 1,

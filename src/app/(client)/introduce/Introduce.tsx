@@ -14,7 +14,7 @@ function Item({ isSmallScreen }: any) {
             justifyContent={'center'}
             direction={'column'}
             alignItems={'center'}
-            minHeight={200}
+            minHeight={300}
             position={'relative'}
         >
             <Box
@@ -43,7 +43,7 @@ function Item({ isSmallScreen }: any) {
             <Box
                 width={1}
                 maxWidth={500}
-                sx={{height:{xs: '40%', md: '80%', lg: 1}}}
+                sx={{ height: { xs: '40%', md: '80%', lg: 1 } }}
                 position={'absolute'}
                 bottom={isSmallScreen ? -40 : -80}
                 left={0}
@@ -68,7 +68,7 @@ function Item2({ isSmallScreen }: any) {
             justifyContent={'center'}
             direction={'column'}
             alignItems={'center'}
-            minHeight={200}
+            minHeight={300}
             position={'relative'}
         >
             <Box
@@ -97,7 +97,7 @@ function Item2({ isSmallScreen }: any) {
             <Box
                 width={1}
                 maxWidth={500}
-                sx={{height:{xs: '40%', md: '80%', lg: 1}}}
+                sx={{ height: { xs: '40%', md: '80%', lg: 1 } }}
                 position={'absolute'}
                 bottom={isSmallScreen ? -40 : -80}
                 right={-10}
@@ -122,10 +122,32 @@ function Item3({ isSmallScreen }: any) {
             justifyContent={'center'}
             direction={'column'}
             alignItems={'center'}
-            minHeight={200}
+            minHeight={300}
             position={'relative'}
         >
-            <Grid xs={8} container justifyContent={'center'}>
+            <Box
+                width={1}
+                maxWidth={500}
+                sx={{ height: { xs: '40%', md: '80%', lg: 1 } }}
+                position={'absolute'}
+                top={isSmallScreen ? -40 : -80}
+                left={0}
+            >
+                <Image
+                    src={'/images/introduce/bot-left-line.svg'}
+                    alt="line"
+                    fill
+                />
+            </Box>
+            <Grid
+                xs={8}
+                container
+                justifyContent={'center'}
+                sx={{
+                    minHeight: { xs: '200px', md: 0 },
+                    mt: { xs: 5, md: 0 },
+                }}
+            >
                 <Typography
                     variant={isSmallScreen ? 'subtitle2' : 'h6'}
                     fontWeight={'bold'}
@@ -147,20 +169,6 @@ function Item3({ isSmallScreen }: any) {
             >
                 <Image src={'/images/introduce/gear.svg'} alt="icon" fill />
             </Box>
-            <Box
-                width={1}
-                maxWidth={500}
-                sx={{height:{xs: '40%', md: '80%', lg: 1}}}
-                position={'absolute'}
-                top={isSmallScreen ? -40 : -80}
-                left={0}
-            >
-                <Image
-                    src={'/images/introduce/bot-left-line.svg'}
-                    alt="line"
-                    fill
-                />
-            </Box>
         </Grid>
     );
 }
@@ -175,10 +183,34 @@ function Item4({ isSmallScreen }: any) {
             justifyContent={'center'}
             direction={'column'}
             alignItems={'center'}
-            minHeight={200}
+            minHeight={300}
             sx={{ position: 'relative' }}
         >
-            <Grid xs={8} container justifyContent={'center'}>
+            <Box
+                width={1}
+                maxWidth={500}
+                sx={{ height: { xs: '40%', md: '80%', lg: 1 } }}
+                position={'absolute'}
+                top={isSmallScreen ? -40 : -80}
+                right={-10}
+            >
+                <Image
+                    src={'/images/introduce/bot-right-line.svg'}
+                    alt="line"
+                    fill
+                />
+            </Box>
+            <Grid
+                xs={8}
+                container
+                justifyContent={'center'}
+                minHeight={200}
+                mt={5}
+                sx={{
+                    minHeight: { xs: '200px', md: 0 },
+                    mt: { xs: 5, md: 0 },
+                }}
+            >
                 <Typography
                     variant={isSmallScreen ? 'subtitle2' : 'h6'}
                     fontWeight={'bold'}
@@ -199,20 +231,6 @@ function Item4({ isSmallScreen }: any) {
                 <Image
                     src={'/images/introduce/light-with-circle.svg'}
                     alt="icon"
-                    fill
-                />
-            </Box>
-            <Box
-                width={1}
-                maxWidth={500}
-                sx={{ height: { xs: '40%', md: '80%', lg: 1 } }}
-                position={'absolute'}
-                top={isSmallScreen ? -40 : -80}
-                right={-10}
-            >
-                <Image
-                    src={'/images/introduce/bot-right-line.svg'}
-                    alt="line"
                     fill
                 />
             </Box>
@@ -279,7 +297,6 @@ export default function Introduce() {
                         fontWeight={'bold'}
                         textAlign={'left'}
                         sx={{
-                            position: 'absolute',
                             bottom: isSmallScreen ? 10 : 30,
                             left: 0,
                         }}

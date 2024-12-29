@@ -10,6 +10,7 @@ export const ApiPathEnum = {
     JobAds: `${prefix}/job-ads`,
     Banner: `${prefix}/banners`,
     Contact: `${prefix}/contacts`,
+    Activity: `${prefix}/activities`,
 };
 
 export const convertSlug = (str: string) => {
