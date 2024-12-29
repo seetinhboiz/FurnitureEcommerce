@@ -4,6 +4,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ImageIcon from '@mui/icons-material/Image';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import CelebrationIcon from '@mui/icons-material/Celebration';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -25,6 +26,11 @@ const mainListItems = [
         text: 'Nhóm sản phẩm',
         icon: <AssignmentRoundedIcon />,
         path: '/admin/category',
+    },
+    {
+        text: 'Hoạt động',
+        icon: <CelebrationIcon />,
+        path: '/admin/activity',
     },
     {
         text: 'Tin tuyển dụng',

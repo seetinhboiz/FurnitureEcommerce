@@ -1,6 +1,9 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import ActivityDetailComponent from './component/ActivityDetailComponent';
-import { activities } from '@/app/static';
+import { ApiPathEnum } from '@/api/api.path.enum';
+import { ApiResponse } from '@/types/utils/api-response.interface';
+import { IActivity } from '@/types/activities/activities.interface';
+import axios from '@/api/axios.instance';
 
 type Props = {
     params: { activityDetail: string };
@@ -14,13 +17,13 @@ export async function generateMetadata(
     const pathSplit = params.activityDetail?.split('-');
     const activityId = pathSplit[pathSplit.length - 1];
 
-    const activity = activities.find(
-        (activity) => activity.id.toString() === activityId,
+    const res = await axios.get<ApiResponse<IActivity>>(
+        `${ApiPathEnum.Activity}/${activityId}`,
     );
 
     return {
-        title: activity?.title,
-        description: activity?.subtitle,
+        title: res.data?.data?.name,
+        description: res.data?.data?.description,
     };
 }
 

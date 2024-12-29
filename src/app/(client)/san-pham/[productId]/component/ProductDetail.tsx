@@ -65,6 +65,7 @@ export default function ProductDetail({ data }: any) {
                         sm: 300,
                         xs: 200,
                     },
+                    backgroundColor: '#fff',
                 }}
                 overflow={'hidden'}
             >
@@ -133,13 +134,14 @@ export default function ProductDetail({ data }: any) {
                 justifyContent={'space-evenly'}
                 xs={12}
                 sx={{
-                    my: 1,
+                    py: 1,
                     color: theme.palette.primary.main,
                     px: {
                         xs: 4,
                         md: 8,
                         lg: 10,
                     },
+                    backgroundColor: '#fff',
                 }}
             >
                 <Grid xs={12}>

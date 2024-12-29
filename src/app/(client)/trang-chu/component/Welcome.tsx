@@ -40,7 +40,7 @@ export default function Welcome() {
                     justifyContent={'center'}
                     alignItems={'center'}
                 >
-                    <Grid xs={8} item py={4}>
+                    <Grid xs={10} md={8} item py={4}>
                         <Typography
                             variant="h4"
                             color={theme.palette.primary.contrastText}
@@ -49,6 +49,7 @@ export default function Welcome() {
                                 backgroundColor: theme.palette.primary.main,
                                 borderRadius: 8,
                                 py: 10,
+                                px: 5,
                                 fontWeight: 600,
                             }}
                         >

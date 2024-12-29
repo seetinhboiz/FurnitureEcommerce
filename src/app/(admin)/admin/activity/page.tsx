@@ -16,18 +16,18 @@ import Header from '../dashboard/components/Header';
 import { useEffect, useState } from 'react';
 import getDashboardTheme from '../dashboard/theme/getDashboardTheme';
 import AddIcon from '@mui/icons-material/Add';
-import { ICategory } from '@/types/categories/categories.interface';
-import MainCategory from './component/MainCategory';
-import CategoryDialog from './component/CategoryDialog';
+import MainActivity from './component/MainActivity';
+import ActivityDialog from './component/ActivityDialog';
 import { interceptorHandle } from '@/api/axios.instance';
+import { IActivity } from '@/types/activities/activities.interface';
 
-export default function Category() {
+export default function Activity() {
     const [mode, setMode] = useState<PaletteMode>('light');
     const [open, setOpen] = useState(false);
     const [reload, setReload] = useState(true);
     const [type, setType] = useState<'CREATE' | 'UPDATE'>('CREATE');
-    const [selectedCategory, setSelectedCategory] = useState<
-        ICategory | undefined
+    const [selectedActivity, setSelectedActivity] = useState<
+        IActivity | undefined
     >();
     const [showCustomTheme, setShowCustomTheme] = useState(true);
     const dashboardTheme = createTheme(getDashboardTheme(mode));
@@ -77,7 +77,7 @@ export default function Category() {
                                 toggleColorMode={toggleColorMode}
                             />
                             <Typography variant="h4">
-                                Quản lý danh mục
+                                Quản lý hoạt động
                             </Typography>
                             <Box
                                 sx={{
@@ -98,26 +98,26 @@ export default function Category() {
                                         setType('CREATE');
                                     }}
                                 >
-                                    Danh mục mới
+                                    Hoạt động mới
                                 </Button>
                             </Box>
-                            <MainCategory
+                            <MainActivity
                                 reload={reload}
                                 setReload={setReload}
                                 setType={setType}
-                                setSelectedCategory={setSelectedCategory}
+                                setSelectedActivity={setSelectedActivity}
                                 setOpen={setOpen}
                             />
                         </Stack>
                     </Box>
                 </Box>
             </ThemeProvider>
-            <CategoryDialog
+            <ActivityDialog
                 reload={reload}
                 open={open}
                 setOpen={setOpen}
                 type={type}
-                category={selectedCategory}
+                activity={selectedActivity}
                 setReload={setReload}
             />
         </main>

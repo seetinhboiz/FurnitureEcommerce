@@ -1,5 +1,4 @@
 'use client';
-import { activities } from '@/app/static';
 import Footer from '@/components/Footer';
 import { Box, Grid, ThemeProvider, Typography } from '@mui/material';
 import Image from 'next/image';
@@ -7,25 +6,33 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import theme from '../../../theme';
 import { useTranslation } from 'react-i18next';
+import { ApiResponse } from '@/types/utils/api-response.interface';
+import { IActivity } from '@/types/activities/activities.interface';
+import { ApiPathEnum } from '@/api/api.path.enum';
+import axios from '@/api/axios.instance';
 
 export default function ActivityDetailComponent() {
     const { t } = useTranslation();
     const path = usePathname();
 
     const activityId = path.split('-')[path.split('-').length - 1];
-    const [currentActivity, setCurrentActivity] = useState<any>({});
+    const [currentActivity, setCurrentActivity] = useState<IActivity>();
 
-    const getActivity = () => {
-        const activity = activities.find(
-            (activity) => activity.id.toString() === activityId,
-        );
-
-        activity && setCurrentActivity(activity);
+    const getActivity = async () => {
+        const activity = await axios
+            .get<
+                ApiResponse<IActivity>
+            >(`${ApiPathEnum.Activity}/${activityId}`)
+            .then((res) => {
+                if (res.status === 200) {
+                    setCurrentActivity(res.data.data);
+                }
+            });
     };
 
     useEffect(() => {
         getActivity();
-    }, [currentActivity]);
+    }, []);
 
     return (
         <ThemeProvider theme={theme}>
@@ -56,14 +63,7 @@ export default function ActivityDetailComponent() {
                         color={theme.palette.primary.main}
                         sx={{ paddingTop: 4, paddingBottom: 4 }}
                     >
-                        {t(`${currentActivity.title}`)}
-                    </Typography>
-                    <Typography
-                        variant="h6"
-                        color={theme.palette.primary.main}
-                        textAlign={'justify'}
-                    >
-                        {t(`${currentActivity.description?.firstTypography}`)}
+                        {currentActivity?.name}
                     </Typography>
                     <Grid
                         item
@@ -81,12 +81,10 @@ export default function ActivityDetailComponent() {
                                 variant="h6"
                                 color={theme.palette.primary.main}
                                 textAlign={'justify'}
-                                dangerouslySetInnerHTML={{
-                                    __html: t(
-                                        `${currentActivity.description?.mainTypography}`,
-                                    ),
-                                }}
-                            ></Typography>
+                                sx={{ whiteSpace: 'pre-line' }}
+                            >
+                                {currentActivity?.description}
+                            </Typography>
                         </Grid>
                         <Grid
                             md={5}
@@ -97,7 +95,7 @@ export default function ActivityDetailComponent() {
                             <Box position={'relative'} width={1} height={1}>
                                 <Image
                                     src={
-                                        currentActivity?.img ??
+                                        currentActivity?.images[0]?.url ??
                                         '/images/activity/welcomeEp.png'
                                     }
                                     alt="welcome"
@@ -106,7 +104,7 @@ export default function ActivityDetailComponent() {
                                     style={{
                                         objectFit: 'contain',
                                     }}
-                                    layout='responsive'
+                                    layout="responsive"
                                 />
                             </Box>
                         </Grid>

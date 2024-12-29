@@ -80,8 +80,21 @@ export default function Service() {
                             alignItems={'center'}
                             sx={{ mt: { xs: 0, md: 4 } }}
                             justifyContent={'left'}
+                            wrap="nowrap"
                         >
-                            <Box width={40} height={40} position={'relative'}>
+                            <Box
+                                sx={{
+                                    width: {
+                                        xs: 20,
+                                        md: 40,
+                                    },
+                                    height: {
+                                        xs: 20,
+                                        md: 40,
+                                    },
+                                }}
+                                position={'relative'}
+                            >
                                 <Image
                                     alt="tick"
                                     src="/images/home/service/tick.svg"
@@ -92,7 +105,13 @@ export default function Service() {
                                 variant="h6"
                                 color={theme.palette.primary.main}
                                 fontWeight={'bold'}
-                                sx={{ ml: 2 }}
+                                sx={{
+                                    ml: {
+                                        xs: 1,
+                                        md: 2,
+                                    },
+                                    whiteSpace: 'nowrap',
+                                }}
                             >
                                 {t('home.fast')}
                             </Typography>
@@ -104,8 +123,21 @@ export default function Service() {
                             alignItems={'center'}
                             sx={{ mt: { xs: 0, md: 4 } }}
                             justifyContent={'left'}
+                            wrap="nowrap"
                         >
-                            <Box width={40} height={40} position={'relative'}>
+                            <Box
+                                sx={{
+                                    width: {
+                                        xs: 20,
+                                        md: 40,
+                                    },
+                                    height: {
+                                        xs: 20,
+                                        md: 40,
+                                    },
+                                }}
+                                position={'relative'}
+                            >
                                 <Image
                                     alt="tick"
                                     src="/images/home/service/tick.svg"
@@ -116,7 +148,13 @@ export default function Service() {
                                 variant="h6"
                                 color={theme.palette.primary.main}
                                 fontWeight={'bold'}
-                                sx={{ ml: 2 }}
+                                sx={{
+                                    ml: {
+                                        xs: 1,
+                                        md: 2,
+                                    },
+                                    whiteSpace: 'nowrap',
+                                }}
                             >
                                 {t('home.efficiency')}
                             </Typography>
@@ -128,8 +166,21 @@ export default function Service() {
                             alignItems={'center'}
                             justifyContent={'left'}
                             sx={{ mt: { xs: 0, md: 4 } }}
+                            wrap="nowrap"
                         >
-                            <Box width={40} height={40} position={'relative'}>
+                            <Box
+                                sx={{
+                                    width: {
+                                        xs: 20,
+                                        md: 40,
+                                    },
+                                    height: {
+                                        xs: 20,
+                                        md: 40,
+                                    },
+                                }}
+                                position={'relative'}
+                            >
                                 <Image
                                     alt="tick"
                                     src="/images/home/service/tick.svg"
@@ -140,7 +191,13 @@ export default function Service() {
                                 variant="h6"
                                 color={theme.palette.primary.main}
                                 fontWeight={'bold'}
-                                sx={{ ml: 2 }}
+                                sx={{
+                                    ml: {
+                                        xs: 1,
+                                        md: 2,
+                                    },
+                                    whiteSpace: 'nowrap',
+                                }}
                             >
                                 {t('home.simple')}
                             </Typography>
@@ -176,7 +233,13 @@ export default function Service() {
                                 variant="h6"
                                 color={theme.palette.primary.main}
                                 fontWeight={'bold'}
-                                sx={{ ml: 2 }}
+                                sx={{
+                                    ml: {
+                                        xs: 1,
+                                        md: 2,
+                                    },
+                                    whiteSpace: 'nowrap',
+                                }}
                             >
                                 {t('home.afterShowService')}
                             </Typography>
@@ -193,7 +256,13 @@ export default function Service() {
                                 variant="h6"
                                 color={theme.palette.primary.main}
                                 fontWeight={'bold'}
-                                sx={{ ml: 2 }}
+                                sx={{
+                                    ml: {
+                                        xs: 1,
+                                        md: 2,
+                                    },
+                                    whiteSpace: 'nowrap',
+                                }}
                             >
                                 {t('home.longTermSolution')}
                             </Typography>
@@ -210,7 +279,13 @@ export default function Service() {
                                 variant="h6"
                                 color={theme.palette.primary.main}
                                 fontWeight={'bold'}
-                                sx={{ ml: 2 }}
+                                sx={{
+                                    ml: {
+                                        xs: 1,
+                                        md: 2,
+                                    },
+                                    whiteSpace: 'nowrap',
+                                }}
                             >
                                 {t('home.connectWithClient')}
                             </Typography>
