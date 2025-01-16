@@ -1,39 +1,7 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
-import { ICategory } from '@/types/categories/categories.interface';
-import { IProduct } from '@/types/products/products.interface';
-import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    TextField,
-    DialogActions,
-    Button,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-    List,
-    ListItem,
-    Box,
-    ListItemText,
-    IconButton,
-    ListItemAvatar,
-    Avatar,
-    FormControlLabel,
-    Switch,
-    Typography,
-    Stack,
-    Grid,
-} from '@mui/material';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { ApiResponse } from '@/types/utils/api-response.interface';
-import DeleteIcon from '@mui/icons-material/Delete';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
-import { LoadingButton } from '@mui/lab';
+import { ICategory } from '@/types/categories/categories.interface';
 import {
     createFailed,
     createSuccessfully,
@@ -47,7 +15,41 @@ import {
     updateFailed,
     updateSuccessfully,
 } from '@/types/common/notification.constant';
+import { IProduct } from '@/types/products/products.interface';
+import { ApiResponse } from '@/types/utils/api-response.interface';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { LoadingButton } from '@mui/lab';
+import {
+    Avatar,
+    Box,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    FormControlLabel,
+    Grid,
+    IconButton,
+    InputLabel,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    MenuItem,
+    Select,
+    Stack,
+    Switch,
+    TextField,
+    Typography,
+} from '@mui/material';
+import { useFormik } from 'formik';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import * as yup from 'yup';
+import scrollToIndex from '../../scrollToIndex';
+import { useCookies } from 'next-client-cookies';
 
 interface ProductDialogProps {
     open: boolean;
@@ -70,6 +72,27 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
 }) => {
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [uploadLoading, setUploadLoading] = useState(false);
+    const cookie = useCookies();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${cookie.get('token')}`,
+        },
+    };
+
+    const nodeRef = {
+        name: useRef(null),
+        overview: useRef(null),
+        introduction: useRef(null),
+        descriptionTitle: useRef(null),
+        images: useRef(null),
+        price: useRef(null),
+        stock: useRef(null),
+        design: useRef(null),
+        specifications: useRef(null),
+        specificationImages: useRef(null),
+    };
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -77,7 +100,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
     const createProduct = (product: IProduct) => {
         delete product._id;
         axios
-            .post(ApiPathEnum.Product, product)
+            .post(ApiPathEnum.Product, product, config)
             .then((res) => {
                 if (res.status === 201) {
                     setReload(!reload);
@@ -91,7 +114,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
 
     const updateProduct = (product: IProduct) => {
         axios
-            .put(`${ApiPathEnum.Product}/${product?._id}`, product)
+            .put(`${ApiPathEnum.Product}/${product?._id}`, product, config)
             .then((res) => {
                 if (res.status === 200) {
                     setReload(!reload);
@@ -109,7 +132,6 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
         } else {
             updateProduct(formik.values);
         }
-
         handleClose();
     };
 
@@ -125,22 +147,22 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
 
     const validationSchema = yup.object().shape({
         name: yup.string().required(requiredText).max(50, maximum50Character),
-        description: yup.string().max(255 * 10, maximum255Character),
-        price: yup.number().min(1, moreThanZero),
-        stock: yup.number().min(1, moreThanZero),
-        images: yup.array().min(1, mustHaveOneImage).max(3, maximumThreeImages),
+        overview: yup.string().required(requiredText),
+        introduction: yup.string().required(requiredText),
         descriptionTitle: yup
             .string()
             .required(requiredText)
             .max(50, maximum50Character),
+        description: yup.string().max(255 * 10, maximum255Character),
+        images: yup.array().min(1, mustHaveOneImage).max(3, maximumThreeImages),
+        price: yup.number().min(1, moreThanZero),
+        stock: yup.number().min(1, moreThanZero),
+        design: yup.string().required(requiredText),
+        specifications: yup.string().required(requiredText),
         specificationImages: yup
             .array()
             .min(1, mustHaveOneImage)
             .max(2, maximumTwoImages),
-        overview: yup.string().required(requiredText),
-        introduction: yup.string().required(requiredText),
-        design: yup.string().required(requiredText),
-        specifications: yup.string().required(requiredText),
     });
 
     const initialValues = {
@@ -171,9 +193,54 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
             type === 'CREATE' ? '' : (product?.descriptionTitle ?? ''),
     } as IProduct;
 
+    const handleScrollToError = () => {
+        switch (Object.keys(formik.errors)[0]) {
+            case 'name':
+                scrollToIndex(nodeRef.name, 'input');
+                break;
+            case 'overview':
+                scrollToIndex(nodeRef.overview, 'textarea');
+                break;
+            case 'introduction':
+                scrollToIndex(nodeRef.introduction, 'textarea');
+                break;
+            case 'descriptionTitle':
+                scrollToIndex(nodeRef.descriptionTitle, 'input');
+                break;
+            case 'images':
+                scrollToIndex(nodeRef.images);
+                break;
+            case 'price':
+                scrollToIndex(nodeRef.price, 'input');
+                break;
+            case 'stock':
+                scrollToIndex(nodeRef.stock, 'input');
+                break;
+            case 'specificationImages':
+                scrollToIndex(nodeRef.specificationImages);
+                break;
+            case 'design':
+                scrollToIndex(nodeRef.design, 'textarea');
+                break;
+            case 'specifications':
+                scrollToIndex(nodeRef.specifications, 'textarea');
+                break;
+            default:
+                break;
+        }
+    };
+
     const formik = useFormik({
         initialValues,
         onSubmit,
+        validate() {
+            if (formik.errors) {
+                handleScrollToError();
+            }
+            return;
+        },
+        validateOnChange: true,
+        validateOnMount: true,
         enableReinitialize: true,
         validationSchema,
     });
@@ -388,6 +455,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                             formik.touched.name && Boolean(formik.errors.name)
                         }
                         helperText={formik.touched.name && formik.errors.name}
+                        ref={nodeRef.name}
                     />
                     <Stack direction={'row'} spacing={2} sx={{ my: 1 }}>
                         <TextField
@@ -407,6 +475,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                             }
                             multiline
                             rows={5}
+                            ref={nodeRef.overview}
                         />
                         <TextField
                             sx={{ my: 1 }}
@@ -426,6 +495,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                             }
                             multiline
                             rows={5}
+                            ref={nodeRef.introduction}
                         />
                     </Stack>
                     <TextField
@@ -444,6 +514,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                             formik.touched.descriptionTitle &&
                             formik.errors.descriptionTitle
                         }
+                        ref={nodeRef.descriptionTitle}
                     />
                     <Stack direction={'row'} spacing={2} sx={{ mt: 2, mb: 1 }}>
                         <TextField
@@ -492,6 +563,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                             startIcon={<CloudUploadIcon />}
                             sx={{ my: 1 }}
                             loading={uploadLoading}
+                            ref={nodeRef.images}
                         >
                             Tải ảnh sản phẩm
                             <VisuallyHiddenInput
@@ -656,6 +728,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                         }
                         helperText={formik.touched.price && formik.errors.price}
                         type="number"
+                        ref={nodeRef.price}
                     />
                     <TextField
                         sx={{ my: 1 }}
@@ -670,6 +743,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                             formik.touched.stock && Boolean(formik.errors.stock)
                         }
                         helperText={formik.touched.stock && formik.errors.stock}
+                        ref={nodeRef.stock}
                     />
                     <Stack my={1} spacing={2} direction={'row'}>
                         <TextField
@@ -689,6 +763,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                             }
                             multiline
                             rows={5}
+                            ref={nodeRef.design}
                         />
                         <TextField
                             sx={{ my: 1 }}
@@ -730,6 +805,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                                 }
                                 multiline
                                 rows={5}
+                                ref={nodeRef.specifications}
                             />
                         </Grid>
 
@@ -746,6 +822,7 @@ const ProductDialog: React.FC<ProductDialogProps> = ({
                                     startIcon={<CloudUploadIcon />}
                                     sx={{ my: 1 }}
                                     loading={uploadLoading}
+                                    ref={nodeRef.specificationImages}
                                 >
                                     Tải ảnh sản phẩm (Thông số kỹ thuật)
                                     <VisuallyHiddenInput

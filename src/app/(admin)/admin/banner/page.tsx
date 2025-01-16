@@ -30,7 +30,6 @@ export default function BannerEdit() {
     const [reload, setReload] = useState(true);
     const [banners, setBanners] = useState<IBanner[]>();
     const [selectedBanner, setSelectedBanner] = useState<IBanner>();
-    const dashboardTheme = createTheme(getDashboardTheme(mode));
 
     const getBanner = (name: string) => {
         axios.get(`${ApiPathEnum.Banner}`, { params: { name } }).then((res) => {

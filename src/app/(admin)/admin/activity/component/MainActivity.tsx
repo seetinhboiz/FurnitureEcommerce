@@ -18,6 +18,9 @@ import {
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import axios from '@/api/axios.instance';
 import { IActivity } from '@/types/activities/activities.interface';
+import { IConfirmDialog } from '@/types/confirmDialog/confirmDialog.interface';
+import ConfirmDialog from '../../confirmDialog';
+import { useCookies } from 'next-client-cookies';
 
 interface MainActivityProps {
     reload: boolean;
@@ -38,6 +41,18 @@ const MainActivity: React.FC<MainActivityProps> = ({
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [activities, setActivities] = useState<IActivity[]>([]);
     const [error, setError] = useState('');
+    const [confirmDialog, setConfirmDialog] = useState<IConfirmDialog>({
+        isOpen: false,
+        title: '',
+        subTitle: '',
+    });
+    const cookie = useCookies();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${cookie.get('token')}`,
+        },
+    };
 
     const handleChangePage = (event: any, newPage: any) => {
         setPage(newPage);
@@ -54,7 +69,7 @@ const MainActivity: React.FC<MainActivityProps> = ({
     );
 
     const removeActivity = (id: string) => {
-        axios.delete(`${ApiPathEnum.Activity}/${id}`).then((res) => {
+        axios.delete(`${ApiPathEnum.Activity}/${id}`, config).then((res) => {
             if (res.status === 200) setReload(!reload);
         });
     };
@@ -147,11 +162,24 @@ const MainActivity: React.FC<MainActivityProps> = ({
                                             boxShadow: 'none',
                                             padding: 0,
                                         }}
-                                        onClick={() =>
-                                            removeActivity(
-                                                activity?._id as string,
-                                            )
-                                        }
+                                        // onClick={() =>
+                                        //     removeActivity(
+                                        //         activity?._id as string,
+                                        //     )
+                                        // }
+                                        onClick={() => {
+                                            setConfirmDialog({
+                                                isOpen: true,
+                                                title: 'Bạn có chắc muốn xoá?',
+                                                subTitle:
+                                                    'Bạn sẽ không thể hoàn tác hành động này.',
+                                                onConfirm: () => {
+                                                    removeActivity(
+                                                        activity?._id as string,
+                                                    );
+                                                },
+                                            });
+                                        }}
                                     >
                                         <DeleteIcon color="error" />
                                     </IconButton>
@@ -169,6 +197,10 @@ const MainActivity: React.FC<MainActivityProps> = ({
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
             />
         </>
     );

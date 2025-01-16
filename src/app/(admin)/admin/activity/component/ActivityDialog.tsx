@@ -1,13 +1,16 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
 import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
+import { IActivity } from '@/types/activities/activities.interface';
 import {
     createFailed,
     createSuccessfully,
+    maximum50Character,
+    mustHaveOneImage,
+    requiredText,
     updateFailed,
     updateSuccessfully,
 } from '@/types/common/notification.constant';
-import { IImage } from '@/types/products/products.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -26,12 +29,15 @@ import {
     ListItemAvatar,
     ListItemText,
     TextField,
+    Typography,
 } from '@mui/material';
+import { useFormik } from 'formik';
 import { useCookies } from 'next-client-cookies';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import * as yup from 'yup';
 import NotfoundImage from '../../../../assets/images/common/not-found.png';
-import { IActivity } from '@/types/activities/activities.interface';
+import scrollToIndex from '../../scrollToIndex';
 
 interface ActivityDialogProps {
     open: boolean;
@@ -51,9 +57,6 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
     reload,
 }) => {
     const cookie = useCookies();
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [images, setImages] = useState<IImage[] | undefined>();
     const [loading, setLoading] = useState(false);
 
     const config = {
@@ -61,6 +64,24 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
             Authorization: `Bearer ${cookie.get('token')}`,
         },
     };
+
+    const nodeRef = {
+        name: useRef(null),
+        description: useRef(null),
+        images: useRef(null),
+    };
+
+    const initialValues = {
+        name: type === 'CREATE' ? '' : activity?.name,
+        description: type === 'CREATE' ? '' : activity?.description,
+        images: type === 'CREATE' ? [] : activity?.images,
+    } as IActivity;
+
+    const validationSchema = yup.object().shape({
+        name: yup.string().required(requiredText).max(50, maximum50Character),
+        description: yup.string().required(requiredText),
+        images: yup.array().min(1, mustHaveOneImage),
+    });
 
     const handleClose = () => {
         setOpen(false);
@@ -94,24 +115,12 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
             });
     };
 
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        if (!images) {
-            return;
-        }
-
-        const data: IActivity = {
-            name,
-            description,
-            images: images,
-        };
-
+    const onSubmit = () => {
         if (type === 'CREATE') {
-            createActivity(data);
+            createActivity(formik.values);
         } else {
             updateActivity({
-                ...data,
+                ...formik.values,
                 _id: activity?._id,
             });
         }
@@ -138,7 +147,7 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
                                 url: res.data.data[0].url,
                             };
 
-                            setImages([image]);
+                            formik.setFieldValue('images', [image]);
                         }
                     })
                     .finally(() => {
@@ -153,21 +162,43 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
             return;
         }
 
-        setImages(undefined);
+        formik.setFieldValue('images', []);
+
         axios.post(`${ApiPathEnum.Files}/remove`, { id });
     };
 
-    useEffect(() => {
-        if (type === 'UPDATE') {
-            setImages(activity?.images);
-            setName(activity?.name ?? '');
-            setDescription(activity?.description ?? '');
-        } else {
-            setName('');
-            setImages(undefined);
-            setDescription('')
+    const handleScrollToError = () => {
+        switch (Object.keys(formik.errors)[0]) {
+            case 'name':
+                scrollToIndex(nodeRef.name, 'input');
+                break;
+                case 'description':
+                scrollToIndex(nodeRef.description, 'textarea');
+                break;
+            case 'images':
+                scrollToIndex(nodeRef.images);
+                break;
+            default:
+                break;
         }
-    }, [open]);
+    };
+
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validate() {
+            if (formik.errors) {
+                handleScrollToError();
+            }
+            return;
+        },
+        validateOnChange: true,
+        validateOnMount: true,
+        enableReinitialize: true,
+        validationSchema,
+    });
+
+    useEffect(() => {}, [open]);
 
     return (
         <Dialog
@@ -175,7 +206,7 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
             onClose={handleClose}
             PaperProps={{
                 component: 'form',
-                onSubmit,
+                onSubmit: formik.handleSubmit,
             }}
             maxWidth={'lg'}
             fullWidth
@@ -187,30 +218,34 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
                 <TextField
                     sx={{ mt: 1 }}
                     autoFocus
-                    required
                     id="name"
                     label="Tên hoạt động"
-                    name="Tên hoạt động"
+                    name="name"
                     fullWidth
-                    value={name}
-                    onChange={(evt) => {
-                        setName(evt.target.value);
-                    }}
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}
+                    ref={nodeRef.name}
                 />
                 <TextField
                     multiline
                     rows={20}
                     sx={{ mt: 1 }}
-                    autoFocus
-                    required
                     id="description"
                     label="Nội dung hoạt động"
-                    name="Nội dung hoạt động"
+                    name="description"
                     fullWidth
-                    value={description}
-                    onChange={(evt) => {
-                        setDescription(evt.target.value);
-                    }}
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                    error={
+                        formik.touched.description &&
+                        Boolean(formik.errors.description)
+                    }
+                    helperText={
+                        formik.touched.description && formik.errors.description
+                    }
+                    ref={nodeRef.description}
                 />
                 <LoadingButton
                     component="label"
@@ -219,7 +254,8 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
                     startIcon={<CloudUploadIcon />}
                     sx={{ my: 1 }}
                     loading={loading}
-                    disabled={!!images}
+                    disabled={!!(formik.values.images.length > 0)}
+                    ref={nodeRef.images}
                 >
                     Tải ảnh hoạt động
                     <VisuallyHiddenInput
@@ -228,7 +264,10 @@ const ActivityDialog: React.FC<ActivityDialogProps> = ({
                         onChange={handleUploadImage}
                     />
                 </LoadingButton>
-                {images?.map(
+                {Boolean(formik.errors.images) && (
+                    <Typography color={'red'}>{mustHaveOneImage}</Typography>
+                )}
+                {formik.values.images?.map(
                     (x) =>
                         x.url && (
                             <List key={x.id}>

@@ -5,10 +5,12 @@ import { ICategory } from '@/types/categories/categories.interface';
 import {
     createFailed,
     createSuccessfully,
+    maximum50Character,
+    mustHaveOneImage,
+    requiredText,
     updateFailed,
     updateSuccessfully,
 } from '@/types/common/notification.constant';
-import { IImage } from '@/types/products/products.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -27,11 +29,15 @@ import {
     ListItemAvatar,
     ListItemText,
     TextField,
+    Typography,
 } from '@mui/material';
+import { useFormik } from 'formik';
 import { useCookies } from 'next-client-cookies';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import * as yup from 'yup';
 import NotfoundImage from '../../../../assets/images/common/not-found.png';
+import scrollToIndex from '../../scrollToIndex';
 
 interface CategoryDialogProps {
     open: boolean;
@@ -51,14 +57,39 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
     reload,
 }) => {
     const cookie = useCookies();
-    const [name, setName] = useState('');
-    const [image, setImage] = useState<IImage | undefined>();
     const [loading, setLoading] = useState(false);
 
     const config = {
         headers: {
             Authorization: `Bearer ${cookie.get('token')}`,
         },
+    };
+
+    const initialValues = {
+        name: type === 'CREATE' ? '' : category?.name,
+        image:
+            type === 'CREATE'
+                ? {
+                      url: '',
+                      id: '',
+                  }
+                : category?.image,
+    } as ICategory;
+
+    const validationSchema = yup.object().shape({
+        name: yup.string().required(requiredText).max(50, maximum50Character),
+        image: yup
+            .object()
+            .required(mustHaveOneImage)
+            .shape({
+                url: yup.string().required(requiredText),
+                id: yup.string().required(requiredText),
+            }),
+    });
+
+    const nodeRef = {
+        name: useRef(null),
+        image: useRef(null),
     };
 
     const handleClose = () => {
@@ -93,23 +124,12 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
             });
     };
 
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        if (!image) {
-            return;
-        }
-
-        const data: ICategory = {
-            name,
-            image,
-        };
-
+    const onSubmit = () => {
         if (type === 'CREATE') {
-            createCategory(data);
+            createCategory(formik.values);
         } else {
             updateCategory({
-                ...data,
+                ...formik.values,
                 _id: category?._id,
             });
         }
@@ -136,7 +156,7 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
                                 url: res.data.data[0].url,
                             };
 
-                            setImage(image);
+                            formik.setFieldValue('image', image);
                         }
                     })
                     .finally(() => {
@@ -151,19 +171,43 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
             return;
         }
 
-        setImage(undefined);
+        formik.setFieldValue('image', {
+            id: '',
+            url: '',
+        });
+
         axios.post(`${ApiPathEnum.Files}/remove`, { id });
     };
 
-    useEffect(() => {
-        if (type === 'UPDATE') {
-            setImage(category?.image);
-            setName(category?.name ?? '');
-        } else {
-            setName('');
-            setImage(undefined);
+    const handleScrollToError = () => {
+        switch (Object.keys(formik.errors)[0]) {
+            case 'name':
+                scrollToIndex(nodeRef.name, 'input');
+                break;
+            case 'images':
+                scrollToIndex(nodeRef.image);
+                break;
+            default:
+                break;
         }
-    }, [open]);
+    };
+
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validate() {
+            if (formik.errors) {
+                handleScrollToError();
+            }
+            return;
+        },
+        validateOnChange: true,
+        validateOnMount: true,
+        enableReinitialize: true,
+        validationSchema,
+    });
+
+    useEffect(() => {}, [open]);
 
     return (
         <Dialog
@@ -171,7 +215,7 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
             onClose={handleClose}
             PaperProps={{
                 component: 'form',
-                onSubmit,
+                onSubmit: formik.handleSubmit,
             }}
             maxWidth={'sm'}
             fullWidth
@@ -182,16 +226,15 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
             <DialogContent>
                 <TextField
                     sx={{ mt: 1 }}
-                    autoFocus
-                    required
                     id="name"
                     label="Tên danh mục"
-                    name="Tên danh mục"
+                    name="name"
                     fullWidth
-                    value={name}
-                    onChange={(evt) => {
-                        setName(evt.target.value);
-                    }}
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}
+                    ref={nodeRef.name}
                 />
                 <LoadingButton
                     component="label"
@@ -200,7 +243,8 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
                     startIcon={<CloudUploadIcon />}
                     sx={{ my: 1 }}
                     loading={loading}
-                    disabled={!!image}
+                    disabled={!!formik.values.image?.id}
+                    ref={nodeRef.image}
                 >
                     Tải ảnh danh mục
                     <VisuallyHiddenInput
@@ -209,7 +253,10 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
                         onChange={handleUploadImage}
                     />
                 </LoadingButton>
-                {image?.url && (
+                {Boolean(formik.errors.image) && (
+                    <Typography color={'red'}>{mustHaveOneImage}</Typography>
+                )}
+                {formik.values.image?.url && (
                     <List>
                         <ListItem
                             sx={{ gap: 2 }}
@@ -218,7 +265,7 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
                                     edge="end"
                                     aria-label="delete"
                                     onClick={() => {
-                                        deleteImage(image?.id);
+                                        deleteImage(formik.values.image?.id);
                                     }}
                                 >
                                     <DeleteIcon />
@@ -229,14 +276,17 @@ const CategoryDialog: React.FC<CategoryDialogProps> = ({
                                 <Avatar sx={{ width: 100, height: 100 }}>
                                     <Box
                                         component="img"
-                                        src={image?.url ?? NotfoundImage}
+                                        src={
+                                            formik.values.image?.url ??
+                                            NotfoundImage
+                                        }
                                         width={1}
                                         height={1}
                                     />
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
-                                primary={image.id}
+                                primary={formik.values.image.id}
                                 sx={{ overflow: 'hidden' }}
                             />
                         </ListItem>

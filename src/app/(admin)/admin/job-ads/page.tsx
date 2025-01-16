@@ -1,5 +1,12 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { ApiPathEnum } from '@/api/api.path.enum';
+import axios from '@/api/axios.instance';
+import { IConfirmDialog } from '@/types/confirmDialog/confirmDialog.interface';
+import { IJobAds } from '@/types/job-ads/job-ads.interface';
+import { ApiResponse } from '@/types/utils/api-response.interface';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import {
     alpha,
     Box,
@@ -16,15 +23,11 @@ import {
     TableRow,
     Typography,
 } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { IJobAds } from '@/types/job-ads/job-ads.interface';
-import { JobAdsDialog } from './components/JobAdsDialog';
-import axios from '@/api/axios.instance';
-import { ApiResponse } from '@/types/utils/api-response.interface';
-import { ApiPathEnum } from '@/api/api.path.enum';
+import { useEffect, useState } from 'react';
+import ConfirmDialog from '../confirmDialog';
 import SideMenu from '../dashboard/components/SideMenu';
+import { JobAdsDialog } from './components/JobAdsDialog';
+import { useCookies } from 'next-client-cookies';
 
 export default function JobAds() {
     const [type, setType] = useState<'CREATE' | 'UPDATE'>('CREATE');
@@ -34,6 +37,18 @@ export default function JobAds() {
     const [jobAdsList, setJobAdsList] = useState<IJobAds[]>([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [confirmDialog, setConfirmDialog] = useState<IConfirmDialog>({
+        isOpen: false,
+        title: '',
+        subTitle: '',
+    });
+    const cookie = useCookies();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${cookie.get('token')}`,
+        },
+    };
 
     const handleChangePage = (event: any, newPage: any) => {
         setPage(newPage);
@@ -50,7 +65,9 @@ export default function JobAds() {
     );
 
     const handleDelete = (id: string) => {
-        return;
+        axios.delete(`${ApiPathEnum.JobAds}/${id}`, config).then((res) => {
+            if (res.status === 200) setReload(!reload);
+        });
     };
 
     const handleUpdate = (job: IJobAds) => {
@@ -60,9 +77,9 @@ export default function JobAds() {
     };
 
     const handleCreate = () => {
-        setType('CREATE')
-        setOpen(true)
-    }
+        setType('CREATE');
+        setOpen(true);
+    };
 
     useEffect(() => {
         axios.get<ApiResponse<IJobAds[]>>(ApiPathEnum.JobAds).then((res) => {
@@ -111,7 +128,7 @@ export default function JobAds() {
                             startIcon={<AddIcon />}
                             color="info"
                             onClick={() => {
-                                handleCreate()
+                                handleCreate();
                             }}
                         >
                             Tin tuyển dụng mới
@@ -210,9 +227,17 @@ export default function JobAds() {
                                                     padding: 0,
                                                 }}
                                                 onClick={() => {
-                                                    handleDelete(
-                                                        job?._id as string,
-                                                    );
+                                                    setConfirmDialog({
+                                                        isOpen: true,
+                                                        title: 'Bạn có chắc muốn xoá?',
+                                                        subTitle:
+                                                            'Bạn sẽ không thể hoàn tác hành động này.',
+                                                        onConfirm: () => {
+                                                            handleDelete(
+                                                                job?._id as string,
+                                                            );
+                                                        },
+                                                    });
                                                 }}
                                             >
                                                 <DeleteIcon color="error" />
@@ -241,6 +266,10 @@ export default function JobAds() {
                 setReload={setReload}
                 type={type}
                 jobAds={selectedJobAds}
+            />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
             />
         </Box>
     );

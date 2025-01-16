@@ -1,7 +1,10 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
 import VisuallyHiddenInput from '@/components/VisuallyHiddenInput';
-import { updateFailed, updateSuccessfully } from '@/types/common/notification.constant';
+import {
+    updateFailed,
+    updateSuccessfully,
+} from '@/types/common/notification.constant';
 import { IBanner, IImage } from '@/types/products/products.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -22,6 +25,7 @@ import {
     ListItemText,
 } from '@mui/material';
 import { useFormik } from 'formik';
+import { useCookies } from 'next-client-cookies';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -43,6 +47,13 @@ const BannerDialog: React.FC<DialogProps> = ({
     getBanner,
 }) => {
     const [uploadLoading, setUploadLoading] = useState(false);
+    const cookie = useCookies();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${cookie.get('token')}`,
+        },
+    };
 
     const handleClose = () => {
         setOpen(false);
@@ -72,7 +83,7 @@ const BannerDialog: React.FC<DialogProps> = ({
             },
         };
         axios
-            .put(`${ApiPathEnum.Banner}/${banner?._id}`, editBanner)
+            .put(`${ApiPathEnum.Banner}/${banner?._id}`, editBanner, config)
             .then((res) => {
                 if (res.status === 200) {
                     setReload(!reload);

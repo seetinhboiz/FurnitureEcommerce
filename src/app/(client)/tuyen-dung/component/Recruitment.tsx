@@ -83,7 +83,7 @@ function Item({ item }: { item: IJobAds }) {
                         }}
                         onClick={() =>
                             router.push(
-                                `/recruitment/${convertSlug(item.name)}-${item._id}`,
+                                `/tuyen-dung/${convertSlug(item.name)}-${item._id}`,
                             )
                         }
                     />
