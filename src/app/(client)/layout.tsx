@@ -1,6 +1,8 @@
 import { Grid } from '@mui/material';
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 export const metadata: Metadata = {
     title: 'Main',
@@ -15,9 +17,11 @@ export default function RootLayout({
     return (
         <>
             <Header />
-            <Grid item xs={12}>
-                {children}
-            </Grid>
+            <Suspense fallback={<Loading />}>
+                <Grid item xs={12} sx={{ marginTop: '145px' }}>
+                    {children}
+                </Grid>
+            </Suspense>
         </>
     );
 }

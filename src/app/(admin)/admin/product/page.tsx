@@ -2,6 +2,7 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
 import axios from '@/api/axios.instance';
 import { ICategory } from '@/types/categories/categories.interface';
+import { IConfirmDialog } from '@/types/confirmDialog/confirmDialog.interface';
 import { IProduct } from '@/types/products/products.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import AddIcon from '@mui/icons-material/Add';
@@ -26,11 +27,13 @@ import {
     Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+import ConfirmDialog from '../confirmDialog';
 import Header from '../dashboard/components/Header';
 import Navbar from '../dashboard/components/Navbar';
 import SideMenu from '../dashboard/components/SideMenu';
 import getDashboardTheme from '../dashboard/theme/getDashboardTheme';
 import ProductDialog from './component/ProductDialog';
+import { useCookies } from 'next-client-cookies';
 
 export default function User() {
     const [mode, setMode] = useState<PaletteMode>('light');
@@ -43,6 +46,18 @@ export default function User() {
     const [selectedProduct, setSelectedProduct] = useState<
         IProduct | undefined
     >();
+    const [confirmDialog, setConfirmDialog] = useState<IConfirmDialog>({
+        isOpen: false,
+        title: '',
+        subTitle: '',
+    });
+    const cookie = useCookies();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${cookie.get('token')}`,
+        },
+    };
 
     const handleChangePage = (event: any, newPage: any) => {
         setPage(newPage);
@@ -72,7 +87,7 @@ export default function User() {
     };
 
     const handleDelete = (id: string) => {
-        axios.delete(`${ApiPathEnum.Product}/${id}`).then((res) => {
+        axios.delete(`${ApiPathEnum.Product}/${id}`, config).then((res) => {
             if (res.status === 200) {
                 setReload(!reload);
             }
@@ -239,9 +254,17 @@ export default function User() {
                                                     padding: 0,
                                                 }}
                                                 onClick={() => {
-                                                    handleDelete(
-                                                        product?._id as string,
-                                                    );
+                                                    setConfirmDialog({
+                                                        isOpen: true,
+                                                        title: 'Bạn có chắc muốn xoá?',
+                                                        subTitle:
+                                                            'Bạn sẽ không thể hoàn tác hành động này.',
+                                                        onConfirm: () => {
+                                                            handleDelete(
+                                                                product?._id as string,
+                                                            );
+                                                        },
+                                                    });
                                                 }}
                                             >
                                                 <DeleteIcon color="error" />
@@ -270,6 +293,10 @@ export default function User() {
                 setReload={setReload}
                 type={type}
                 product={selectedProduct}
+            />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
             />
         </Box>
     );

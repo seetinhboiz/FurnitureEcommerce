@@ -1,5 +1,7 @@
 import { ApiPathEnum } from '@/api/api.path.enum';
+import axios from '@/api/axios.instance';
 import { ICategory } from '@/types/categories/categories.interface';
+import { IConfirmDialog } from '@/types/confirmDialog/confirmDialog.interface';
 import { ApiResponse } from '@/types/utils/api-response.interface';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -16,8 +18,9 @@ import {
     TablePagination,
     TableRow,
 } from '@mui/material';
+import { useCookies } from 'next-client-cookies';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import axios from '@/api/axios.instance';
+import ConfirmDialog from '../../confirmDialog';
 
 interface MainCategoryProps {
     reload: boolean;
@@ -38,6 +41,18 @@ const MainCategory: React.FC<MainCategoryProps> = ({
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [error, setError] = useState('');
+    const [confirmDialog, setConfirmDialog] = useState<IConfirmDialog>({
+        isOpen: false,
+        title: '',
+        subTitle: '',
+    });
+    const cookie = useCookies();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${cookie.get('token')}`,
+        },
+    };
 
     const handleChangePage = (event: any, newPage: any) => {
         setPage(newPage);
@@ -54,7 +69,7 @@ const MainCategory: React.FC<MainCategoryProps> = ({
     );
 
     const removeCategory = (id: string) => {
-        axios.delete(`${ApiPathEnum.Category}/${id}`).then((res) => {
+        axios.delete(`${ApiPathEnum.Category}/${id}`, config).then((res) => {
             if (res.status === 200) setReload(!reload);
         });
     };
@@ -147,11 +162,19 @@ const MainCategory: React.FC<MainCategoryProps> = ({
                                             boxShadow: 'none',
                                             padding: 0,
                                         }}
-                                        onClick={() =>
-                                            removeCategory(
-                                                category?._id as string,
-                                            )
-                                        }
+                                        onClick={() => {
+                                            setConfirmDialog({
+                                                isOpen: true,
+                                                title: 'Bạn có chắc muốn xoá?',
+                                                subTitle:
+                                                    'Bạn sẽ không thể hoàn tác hành động này.',
+                                                onConfirm: () => {
+                                                    removeCategory(
+                                                        category?._id as string,
+                                                    );
+                                                },
+                                            });
+                                        }}
                                     >
                                         <DeleteIcon color="error" />
                                     </IconButton>
@@ -169,6 +192,10 @@ const MainCategory: React.FC<MainCategoryProps> = ({
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
             />
         </>
     );

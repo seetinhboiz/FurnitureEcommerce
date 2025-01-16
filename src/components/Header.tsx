@@ -30,8 +30,8 @@ import { styled, ThemeProvider } from '@mui/material/styles';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import LanguageButton from './LanguageButton';
 import { useTranslation } from 'react-i18next';
+import LanguageButton from './LanguageButton';
 
 const StyledAppBar = styled(AppBar)({
     width: '100%',
@@ -47,7 +47,6 @@ const StyledToolbar = styled(Toolbar)({
 });
 
 const MenuItem = styled(Typography)({
-    // color: "white",
     color: theme.palette.primary.main,
     fontWeight: 'bold',
     textDecoration: 'none',
@@ -56,10 +55,8 @@ const MenuItem = styled(Typography)({
     },
     cursor: 'pointer',
     '&.selected': {
-        // color: "#3F0071",
         color: theme.palette.primary.contrastText,
         padding: '10px',
-        // backgroundColor: "#fff",
         backgroundColor: theme.palette.primary.main,
         borderRadius: '10px',
     },
@@ -146,7 +143,7 @@ const Header = () => {
     if (!mounted) return null;
 
     return (
-        <StyledAppBar position="sticky">
+        <StyledAppBar position="fixed" sx={{ top: 0, zIndex: 1000 }}>
             <StyledToolbar>
                 <ThemeProvider theme={theme}>
                     <Grid
